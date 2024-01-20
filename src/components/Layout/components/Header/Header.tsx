@@ -1,10 +1,20 @@
-import { layoutConfig } from '@/config/layoutConfig';
-import { Avatar, Button, Fab, Grid, IconButton, useTheme } from '@mui/material';
+import {
+    Avatar,
+    Box,
+    Button,
+    Fab,
+    Grid,
+    IconButton,
+    useTheme,
+} from '@mui/material';
 import { NavLink } from 'react-router-dom';
 /* icons */
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { layoutConfig } from '../../config/layoutConfig';
+import { useApplicationStore } from '@/hooks/useApplicationStore';
+import { useEffect, useRef, useState } from 'react';
 
 type HeaderProps = {
     classname?: string;
@@ -19,6 +29,17 @@ export const Header = ({
 
     const config = layoutConfig.header;
 
+    const { isAsideExpanded } = useApplicationStore();
+
+    const logoRef = useRef<HTMLImageElement>(null);
+    const [currentLogoWidth, setCurrentLogoWidth] = useState(0);
+
+    useEffect(() => {
+        if (logoRef?.current) {
+            setCurrentLogoWidth(logoRef.current.offsetWidth);
+        }
+    }, [isAsideExpanded]);
+
     return (
         <Grid
             className={classname}
@@ -26,10 +47,10 @@ export const Header = ({
                 width: '100%',
                 gridArea: gridTemplateArea,
                 height: `${layoutConfig.header.height}px`,
-                boxShadow: '0px 4px 42px 0px rgba(0, 0, 0, 0.05)',
                 border: '1px solid #EAEAEA',
+                borderLeft: 'none',
                 padding: '10px 20px',
-                backgroundColor: '#fff',
+                backgroundColor: theme.palette.background.default,
                 display: 'flex',
                 justifyContent: 'space-between',
             }}
@@ -44,15 +65,46 @@ export const Header = ({
                 spacing={1}
             >
                 {/* logo */}
-                <Grid item>
-                    <NavLink to="/">
+                <Box
+                    sx={{
+                        height: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        transition: 'all 0.3s ease-in-out',
+                        width: isAsideExpanded ? '0px' : currentLogoWidth,
+                    }}
+                >
+                    <NavLink
+                        to="/"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+
+                            height: layoutConfig.header.height - 2,
+                            position: 'absolute',
+                            width: isAsideExpanded
+                                ? layoutConfig.aside.width.expanded
+                                : currentLogoWidth,
+
+                            left: isAsideExpanded
+                                ? 0
+                                : layoutConfig.aside.width.collapsed,
+
+                            top: 0,
+                            transition: 'all 0.3s ease-in-out',
+                            userSelect: 'none',
+                        }}
+                    >
                         <img
                             src="/assets/logos/logo.png"
                             alt="logo"
-                            style={{ height: '40px' }}
+                            style={{ height: '40px', objectFit: 'contain' }}
+                            ref={logoRef}
                         />
                     </NavLink>
-                </Grid>
+                </Box>
 
                 {/* nav buttons (prev and next) */}
                 <Grid
