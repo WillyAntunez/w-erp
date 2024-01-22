@@ -25,14 +25,7 @@ export const Header = ({
 
     const { isAsideExpanded, onToggleMobileMenu } = useApplicationStore();
 
-    const logoRef = useRef<HTMLImageElement>(null);
-    const [currentLogoWidth, setCurrentLogoWidth] = useState(0);
-
-    useEffect(() => {
-        if (logoRef?.current) {
-            setCurrentLogoWidth(logoRef.current.offsetWidth);
-        }
-    }, [isAsideExpanded]);
+    const logoWidth = '150px';
 
     return (
         <Grid
@@ -83,7 +76,7 @@ export const Header = ({
                         alignItems: 'center',
                         justifyContent: 'center',
                         transition: 'all 0.3s ease-in-out',
-                        width: isAsideExpanded ? '0px' : currentLogoWidth,
+                        width: isAsideExpanded ? '0px' : logoWidth,
                     }}
                 >
                     <Box
@@ -97,7 +90,7 @@ export const Header = ({
                             position: 'absolute',
                             width: isAsideExpanded
                                 ? layoutConfig.aside.width.expanded
-                                : currentLogoWidth,
+                                : logoWidth,
 
                             left: isAsideExpanded
                                 ? 0
@@ -119,7 +112,6 @@ export const Header = ({
                             src="/assets/logos/logo.png"
                             alt="logo"
                             style={{ height: '40px', objectFit: 'contain' }}
-                            ref={logoRef}
                         />
                     </Box>
                 </Box>
