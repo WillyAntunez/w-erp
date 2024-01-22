@@ -24,6 +24,7 @@ export const Aside = () => {
         isMobile,
         onToggleMobileMenu,
         onSetMobileMenu,
+        screenWidth,
     } = useApplicationStore();
 
     const theme: MuiTheme = useTheme();

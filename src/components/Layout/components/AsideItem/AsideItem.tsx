@@ -18,7 +18,7 @@ export const AsideItem = ({
     muiIcon = null,
     type = 'BUTTON',
 }: AsideItemProps = {}) => {
-    const { isAsideExpanded } = useApplicationStore();
+    const { isAsideExpanded, isMobile } = useApplicationStore();
     const navigate = useNavigate();
 
     const onClickItem = () => {
@@ -76,7 +76,7 @@ export const AsideItem = ({
             </Box>
 
             {/* label */}
-            {isAsideExpanded && label && (
+            {(isAsideExpanded || isMobile) && label && (
                 <Box
                     sx={{
                         display: 'flex',
