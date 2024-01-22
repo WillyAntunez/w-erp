@@ -15,6 +15,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { layoutConfig } from '../../config/layoutConfig';
 import { useApplicationStore } from '@/hooks/useApplicationStore';
 import { useEffect, useRef, useState } from 'react';
+import { responsiveSizes } from '@/config/responsive';
+import MenuIcon from '@mui/icons-material/Menu';
 
 type HeaderProps = {
     classname?: string;
@@ -29,7 +31,7 @@ export const Header = ({
 
     const config = layoutConfig.header;
 
-    const { isAsideExpanded } = useApplicationStore();
+    const { isAsideExpanded, onToggleMobileMenu } = useApplicationStore();
 
     const logoRef = useRef<HTMLImageElement>(null);
     const [currentLogoWidth, setCurrentLogoWidth] = useState(0);
@@ -51,16 +53,33 @@ export const Header = ({
                 borderLeft: 'none',
                 padding: '10px 20px',
                 backgroundColor: theme.palette.background.default,
-                display: 'flex',
+                display: 'grid',
+                gridTemplateColumns: 'auto 1fr auto',
                 justifyContent: 'space-between',
             }}
         >
+            <Grid
+                item
+                sx={{
+                    [`@media (min-width: ${responsiveSizes.tablet}px)`]: {
+                        display: 'none',
+                    },
+                }}
+            >
+                <IconButton size="small" onClick={onToggleMobileMenu}>
+                    <MenuIcon />
+                </IconButton>
+            </Grid>
+
             {/* left */}
             <Grid
                 container
                 sx={{
                     display: 'flex',
                     width: 'max-content',
+                    [`@media (max-width: ${responsiveSizes.tablet}px)`]: {
+                        justifySelf: 'center',
+                    },
                 }}
                 spacing={1}
             >
@@ -75,9 +94,9 @@ export const Header = ({
                         width: isAsideExpanded ? '0px' : currentLogoWidth,
                     }}
                 >
-                    <NavLink
-                        to="/"
-                        style={{
+                    <Box
+                        // to="/"
+                        sx={{
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -95,6 +114,13 @@ export const Header = ({
                             top: 0,
                             transition: 'all 0.3s ease-in-out',
                             userSelect: 'none',
+
+                            [`@media (max-width: ${responsiveSizes.tablet}px)`]:
+                                {
+                                    position: 'relative',
+                                    width: '100%',
+                                    left: 0,
+                                },
                         }}
                     >
                         <img
@@ -103,7 +129,7 @@ export const Header = ({
                             style={{ height: '40px', objectFit: 'contain' }}
                             ref={logoRef}
                         />
-                    </NavLink>
+                    </Box>
                 </Box>
 
                 {/* nav buttons (prev and next) */}
@@ -112,6 +138,9 @@ export const Header = ({
                     sx={{
                         display: 'flex',
                         gap: 1,
+                        [`@media (max-width: ${responsiveSizes.tablet}px)`]: {
+                            display: 'none',
+                        },
                     }}
                 >
                     <IconButton
@@ -148,13 +177,29 @@ export const Header = ({
                 </Grid>
 
                 {/* left slot */}
-                <Grid item className={config.slotNames.left}>
+                <Grid
+                    item
+                    className={config.slotNames.left}
+                    sx={{
+                        [`@media (max-width: ${responsiveSizes.tablet}px)`]: {
+                            display: 'none',
+                        },
+                    }}
+                >
                     {/* this is the left slot to portal used by the Content component */}
                 </Grid>
             </Grid>
 
             {/* center slot */}
-            <Grid item className={config.slotNames.center}>
+            <Grid
+                item
+                className={config.slotNames.center}
+                sx={{
+                    [`@media (max-width: ${responsiveSizes.tablet}px)`]: {
+                        display: 'none',
+                    },
+                }}
+            >
                 {/* this is the center slot to portal used by the Content component */}
             </Grid>
 
@@ -169,7 +214,15 @@ export const Header = ({
                 spacing={1}
             >
                 {/* right slot */}
-                <Grid item className={config.slotNames.right}>
+                <Grid
+                    item
+                    className={config.slotNames.right}
+                    sx={{
+                        [`@media (max-width: ${responsiveSizes.tablet}px)`]: {
+                            display: 'none',
+                        },
+                    }}
+                >
                     {/* this is the right slot to portal used by the Content component */}
                 </Grid>
 
