@@ -1,16 +1,15 @@
-import { layoutConfig } from '@/components/Layout/config/layoutConfig';
-import { useApplicationStore } from '@/hooks/useApplicationStore';
-import { useTheme } from '@emotion/react';
-import { Box, Grid, Theme } from '@mui/material';
-
-import { Theme as MuiTheme } from '@mui/material/styles';
 import { AsideItem } from '../AsideItem/AsideItem';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import HomeIcon from '@mui/icons-material/Home';
+import { Box, Grid } from '@mui/material';
+import { layoutConfig } from '@/components/Layout/config/layoutConfig';
 import { responsiveSizes } from '@/config/responsive';
-import { useRef } from 'react';
+import { Theme as MuiTheme } from '@mui/material/styles';
+import { useApplicationStore } from '@/hooks/useApplicationStore';
 import { useOutsideAlerter } from '@/hooks/useOutsideAlerter';
+import { useRef } from 'react';
+import { useTheme } from '@emotion/react';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import HomeIcon from '@mui/icons-material/Home';
 
 declare module '@emotion/react' {
     export interface Theme extends MuiTheme {}
@@ -19,12 +18,11 @@ declare module '@emotion/react' {
 export const Aside = () => {
     const {
         isAsideExpanded,
-        onToggleAsideExpanded,
-        isMobileMenuOpen,
         isMobile,
-        onToggleMobileMenu,
+        isMobileMenuOpen,
         onSetMobileMenu,
-        screenWidth,
+        onToggleAsideExpanded,
+        onToggleMobileMenu,
     } = useApplicationStore();
 
     const theme: MuiTheme = useTheme();

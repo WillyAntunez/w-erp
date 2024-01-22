@@ -1,13 +1,4 @@
-import {
-    Avatar,
-    Box,
-    Button,
-    Fab,
-    Grid,
-    IconButton,
-    useTheme,
-} from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { Avatar, Box, Grid, IconButton, useTheme } from '@mui/material';
 /* icons */
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -17,6 +8,7 @@ import { useApplicationStore } from '@/hooks/useApplicationStore';
 import { useEffect, useRef, useState } from 'react';
 import { responsiveSizes } from '@/config/responsive';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountMenu from '../AvatarMenu/AvatarMenu';
 
 type HeaderProps = {
     classname?: string;
@@ -240,22 +232,7 @@ export const Header = ({
                 </Grid>
 
                 <Grid item>
-                    <IconButton
-                        sx={{
-                            width: '32px',
-                            height: '32px',
-                        }}
-                    >
-                        <Avatar
-                            sx={{
-                                width: '32px',
-                                height: '32px',
-                                fontSize: '14px',
-                            }}
-                        >
-                            WA
-                        </Avatar>
-                    </IconButton>
+                    <AccountMenu />
                 </Grid>
             </Grid>
 
