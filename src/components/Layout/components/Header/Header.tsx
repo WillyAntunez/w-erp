@@ -5,10 +5,10 @@ import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { layoutConfig } from '../../config/layoutConfig';
 import { useApplicationStore } from '@/hooks/useApplicationStore';
-import { useEffect, useRef, useState } from 'react';
 import { responsiveSizes } from '@/config/responsive';
 import MenuIcon from '@mui/icons-material/Menu';
 import AccountMenu from '../AvatarMenu/AvatarMenu';
+import { useHistoryNavigation } from '@/hooks/useHistoryNavigation';
 
 type HeaderProps = {
     classname?: string;
@@ -26,6 +26,13 @@ export const Header = ({
     const { isAsideExpanded, onToggleMobileMenu } = useApplicationStore();
 
     const logoWidth = '150px';
+
+    const {
+        nextPageExists,
+        prevPageExists,
+        navigateBackward,
+        navigateForward,
+    } = useHistoryNavigation();
 
     return (
         <Grid
@@ -135,6 +142,8 @@ export const Header = ({
                             height: '40px',
                             backgroundColor: theme.palette.grey[50],
                         }}
+                        disabled={!prevPageExists}
+                        onClick={navigateBackward}
                     >
                         <ArrowLeftIcon
                             sx={{
@@ -151,6 +160,8 @@ export const Header = ({
                             height: '40px',
                             backgroundColor: theme.palette.grey[50],
                         }}
+                        disabled={!nextPageExists}
+                        onClick={navigateForward}
                     >
                         <ArrowRightIcon
                             sx={{

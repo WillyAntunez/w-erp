@@ -1,13 +1,13 @@
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes, BrowserRouter } from 'react-router-dom';
 import { DashboardRouter } from './dashboard/DashboardRouter';
 
 export const AppRouter = () => {
     return (
-        <HashRouter>
+        <BrowserRouter>
             <Routes>
                 {/* dashboard */}
                 <Route path="/*" element={<DashboardRouter />} />
             </Routes>
-        </HashRouter>
+        </BrowserRouter>
     );
 };

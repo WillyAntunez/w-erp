@@ -131,6 +131,7 @@ export const Aside = () => {
                         type="BOX"
                         label="Inicio"
                         muiIcon={<HomeIcon />}
+                        to="/"
                     />
                     <AsideItem type="SEPARATOR" />
                 </Grid>
