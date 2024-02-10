@@ -1,25 +1,26 @@
 import { layoutConfig } from '@/components/Layout/config/layoutConfig';
+import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
 import { useApplicationStore } from '@/hooks/useApplicationStore';
-import { Box } from '@mui/material';
+import { IAsideItem } from '@/types/navigations';
+import { Box, useTheme } from '@mui/material';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-type AsideItemProps = {
-    to?: string;
-    onClick?: () => void;
-    label?: string;
-    muiIcon?: React.ReactNode;
-    type?: 'BUTTON' | 'SEPARATOR' | 'BOX';
-};
 
 export const AsideItem = ({
     to = '',
     onClick = () => {},
     label = '',
-    muiIcon = null,
-    type = 'BUTTON',
-}: AsideItemProps = {}) => {
+    icon = null,
+    iconType = 'MUI',
+    type = 'INTERNAL',
+    expansibleType = 'FLOATING',
+}: IAsideItem = {}) => {
     const { isAsideExpanded, isMobile } = useApplicationStore();
     const navigate = useNavigate();
+
+    console.log({ type, label, icon, iconType });
+
+    const theme = useTheme();
 
     const onClickItem = () => {
         if (type === 'SEPARATOR') return;
@@ -36,19 +37,35 @@ export const AsideItem = ({
             <Box
                 sx={{
                     width: '100%',
-                    height: '1px',
-                    backgroundColor: '#EAEAEA',
+                    borderBottom: '1px solid',
+                    borderColor: (theme) => theme.palette.grey[100],
                 }}
             />
         );
     }
+
+    const renderedIcon = useMemo(() => {
+        if (icon) {
+            if (iconType === 'MUI') {
+                return <MuiIcon icon={icon} />;
+            } else {
+                return <i className={icon} />;
+            }
+        }
+
+        console.log('no icon');
+
+        return null;
+    }, [icon, iconType]);
 
     return (
         <Box
             sx={{
                 width: '100%',
                 height:
-                    type === 'BOX' ? layoutConfig.header.height - 2 : '40px',
+                    type === 'PRINCIPAL'
+                        ? layoutConfig.header.height - 2
+                        : '40px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -72,7 +89,7 @@ export const AsideItem = ({
                     color: (theme) => theme.palette.text.secondary,
                 }}
             >
-                {muiIcon}
+                {renderedIcon}
             </Box>
 
             {/* label */}

@@ -3,14 +3,16 @@ import { INavigation } from './types/navigations';
 export const navigations: INavigation[] = [
     {
         label: 'Inicio',
-        iconType: 'MUI',
         icon: 'Home',
         component: 'src/views/home/HomePage',
         path: '/',
+        type: 'PRINCIPAL',
+    },
+    {
+        type: 'SEPARATOR',
     },
     {
         label: 'Clientes',
-        iconType: 'MUI',
         icon: 'PeopleAlt',
         component: 'src/views/customers/CustomersPage.tsx',
         childrenDisplayType: 'FLOATING',
@@ -22,6 +24,7 @@ export const navigations: INavigation[] = [
                 component: 'src/views/customers/CustomersListPage',
                 path: '/customers/list',
             },
+            // todo: not displayed routes
         ],
     },
 ];

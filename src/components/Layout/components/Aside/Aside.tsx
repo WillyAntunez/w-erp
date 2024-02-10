@@ -10,6 +10,8 @@ import { useTheme } from '@emotion/react';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import HomeIcon from '@mui/icons-material/Home';
+import AsideItems from '../AsideItems/AsideItems';
+import { navigations } from '@/navigations';
 
 declare module '@emotion/react' {
     export interface Theme extends MuiTheme {}
@@ -119,33 +121,17 @@ export const Aside = () => {
                     {isAsideExpanded ? <AsideItem type="SEPARATOR" /> : null}
                 </Grid>
 
-                {/* expand and collapse item */}
-                <Grid
-                    sx={{
-                        display: 'flex',
-                        marginTop: 'auto',
-                        flexDirection: 'column',
-                    }}
-                >
-                    <AsideItem
-                        type="BOX"
-                        label="Inicio"
-                        muiIcon={<HomeIcon />}
-                        to="/"
-                    />
-                    <AsideItem type="SEPARATOR" />
-                </Grid>
-
                 {/* aside items */}
                 <Grid
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
-                        justifyContent: 'space-between',
                         flex: 1,
                         width: '100%',
                     }}
-                ></Grid>
+                >
+                    <AsideItems navigations={navigations} />
+                </Grid>
 
                 {/* expand and collapse item */}
                 <Grid
@@ -157,13 +143,11 @@ export const Aside = () => {
                 >
                     <AsideItem type="SEPARATOR" />
                     <AsideItem
-                        type="BOX"
-                        muiIcon={
-                            isAsideExpanded || isMobile ? (
-                                <ArrowLeftIcon />
-                            ) : (
-                                <ArrowRightIcon />
-                            )
+                        type="PRINCIPAL"
+                        icon={
+                            isAsideExpanded || isMobile
+                                ? 'ArrowLeft'
+                                : 'ArrowRight'
                         }
                         onClick={() => {
                             isMobile

@@ -1,25 +1,43 @@
-export enum IconType {
-    MUI = 'MUI',
-    FA = 'FA',
+export type INavChildrenDisplayType = 'FLOATING' | 'DROPDOWN';
+
+export type INavIconType = 'MUI' | 'FA';
+
+export type AsideItemPropsBase = {
+    to?: string;
+    onClick?: () => void;
+    label?: string;
+    icon?: string | null;
+    iconType?: INavIconType;
+};
+
+export interface IAsideItem extends AsideItemPropsBase {
+    type?:
+        | 'EXPANSIBLE'
+        | 'SEPARATOR'
+        | 'BUTTON'
+        | 'INTERNAL'
+        | 'EXTERNAL'
+        | 'PRINCIPAL';
+    expansibleType?: INavChildrenDisplayType;
 }
 
-export interface INavigation {
+export interface INavigation extends IAsideItem {
     /**
      * The label of the navigation item
      */
-    label: string;
+    label?: string;
     /**
      * The icon type (MUI or FA)
      */
-    iconType: 'MUI' | 'FA';
+    iconType?: INavIconType;
     /**
      * The icon of the navigation item
      */
-    icon: string;
+    icon?: string;
     /**
      * The path of the navigation react component
      */
-    component: string;
+    component?: string;
     /**
      * The children of the navigation item
      */
@@ -31,5 +49,5 @@ export interface INavigation {
     /** 
         how childrens should be displayed in desktop, as a floating menu or as a dropdown menu
     */
-    childrenDisplayType?: 'FLOATING' | 'DROPDOWN';
+    childrenDisplayType?: INavChildrenDisplayType;
 }
