@@ -4,8 +4,12 @@ import { Layout } from '@/components/Layout/Layout';
 import { navigations } from '@/navigations';
 import { INavigation } from '@/types/navigations';
 
-export const ComponentLoader = ({ path }: { path: string }) => {
-    const Component = React.lazy(() => import(`../../../${path}`));
+export const ComponentLoader = ({
+    component,
+}: {
+    component: React.ComponentType<any>;
+}) => {
+    const Component = component;
 
     return (
         <React.Suspense fallback={<div>Loading...</div>}>
@@ -29,7 +33,7 @@ export const getRoutes = (navigations: INavigation[]): JSX.Element[] => {
                         key={navigation.path}
                         path={navigation.path}
                         element={
-                            <ComponentLoader path={navigation.component} />
+                            <ComponentLoader component={navigation.component} />
                         }
                     />,
                 );

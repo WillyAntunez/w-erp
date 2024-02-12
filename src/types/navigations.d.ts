@@ -37,7 +37,7 @@ export interface INavigation extends IAsideItem {
     /**
      * The path of the navigation react component
      */
-    component?: string;
+    component?: LazyExoticComponent<() => Element>;
     /**
      * The children of the navigation item
      */

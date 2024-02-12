@@ -1,10 +1,11 @@
+import { lazy } from 'react';
 import { INavigation } from './types/navigations';
 
 export const navigations: INavigation[] = [
     {
         label: 'Inicio',
         icon: 'Home',
-        component: 'src/views/home/HomePage',
+        component: lazy(() => import('./views/home/HomePage')),
         path: '/',
         type: 'PRINCIPAL',
     },
@@ -21,7 +22,9 @@ export const navigations: INavigation[] = [
                 label: 'Lista',
                 iconType: 'MUI',
                 icon: 'List',
-                component: 'src/views/customers/CustomersListPage',
+                component: lazy(
+                    () => import('./views/customers/CustomersListPage'),
+                ),
                 path: '/customers/list',
             },
             // todo: not displayed routes
