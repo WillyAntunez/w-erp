@@ -21,6 +21,7 @@ const generateAsideItems = (
                     label={nav.label}
                     icon={nav.icon}
                     iconType={nav.iconType}
+                    level={level}
                 >
                     {generateAsideItems(
                         nav.children,
@@ -30,7 +31,7 @@ const generateAsideItems = (
                 </DesplegableAsideItem>,
             );
         } else {
-            items.push(<AsideItem key={index} {...nav} />);
+            items.push(<AsideItem key={index} {...nav} level={level} />);
         }
     });
 

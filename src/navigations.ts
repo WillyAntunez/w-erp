@@ -15,7 +15,6 @@ export const navigations: INavigation[] = [
     {
         label: 'Clientes',
         icon: 'PeopleAlt',
-        component: 'src/views/customers/CustomersPage.tsx',
         childrenDisplayType: 'FLOATING',
         children: [
             {
@@ -27,6 +26,152 @@ export const navigations: INavigation[] = [
                 ),
                 path: '/customers/list',
             },
+            {
+                label: 'Prospectos',
+                iconType: 'MUI',
+                icon: 'ListAlt',
+                component: lazy(
+                    () => import('./views/customers/ProspectsPage'),
+                ),
+                path: '/customers/prospects',
+            },
+            {
+                label: 'Children 2',
+                iconType: 'MUI',
+                icon: 'ListAlt',
+                children: [
+                    {
+                        label: 'Children 2.1',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        component: lazy(
+                            () => import('./views/customers/ProspectsPage'),
+                        ),
+                        path: '/customers/prospects',
+                    },
+                    {
+                        label: 'Children 2.2',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        component: lazy(
+                            () => import('./views/customers/ProspectsPage'),
+                        ),
+                        path: '/customers/prospects',
+                    },
+                    {
+                        label: 'Children 2.3',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        children: [
+                            {
+                                label: 'Children 2.3.1',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 2.3.2',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 2.3.3',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                label: 'Children 3',
+                iconType: 'MUI',
+                icon: 'ListAlt',
+                children: [
+                    {
+                        label: 'Children 3.1',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        component: lazy(
+                            () => import('./views/customers/ProspectsPage'),
+                        ),
+                        path: '/customers/prospects',
+                    },
+                    {
+                        label: 'Children 3.2',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        component: lazy(
+                            () => import('./views/customers/ProspectsPage'),
+                        ),
+                        path: '/customers/prospects',
+                    },
+                    {
+                        label: 'Children 3.3',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        children: [
+                            {
+                                label: 'Children 3.3.1',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 3.3.2',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 3.3.3',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                        ],
+                    },
+                ],
+            },
+
             // todo: not displayed routes
         ],
     },

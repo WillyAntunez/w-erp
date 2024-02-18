@@ -3,8 +3,7 @@ export type INavChildrenDisplayType = 'FLOATING' | 'DROPDOWN';
 export type INavIconType = 'MUI' | 'FA';
 
 export type AsideItemPropsBase = {
-    to?: string;
-    onClick?: () => void;
+    onClick?: (event: React.MouseEvent<HTMLElement>) => void;
     label?: string;
     icon?: string | null;
     iconType?: INavIconType;
@@ -19,6 +18,9 @@ export interface IAsideItem extends AsideItemPropsBase {
         | 'EXTERNAL'
         | 'PRINCIPAL';
     expansibleType?: INavChildrenDisplayType;
+    isExpanded?: boolean;
+    path?: string;
+    level?: number;
 }
 
 export interface INavigation extends IAsideItem {

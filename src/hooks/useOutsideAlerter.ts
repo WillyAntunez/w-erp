@@ -5,7 +5,7 @@ export const useOutsideAlerter = (
     clickOutFunction: (event: Event) => void,
 ) => {
     useEffect(() => {
-        function handleClickOutside(event: Event) {
+        function handleClickOutside(event: MouseEvent) {
             const target = event.target as Node;
 
             if (ref.current && !ref.current.contains(target)) {

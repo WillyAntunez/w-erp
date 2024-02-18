@@ -4,31 +4,32 @@ import { useApplicationStore } from '@/hooks/useApplicationStore';
 import { IAsideItem } from '@/types/navigations';
 import { Box, useTheme } from '@mui/material';
 import { useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 export const AsideItem = ({
-    to = '',
+    path = '',
     onClick = () => {},
     label = '',
     icon = null,
     iconType = 'MUI',
     type = 'INTERNAL',
     expansibleType = 'FLOATING',
+    isExpanded = false,
+    level = 1,
 }: IAsideItem = {}) => {
     const { isAsideExpanded, isMobile } = useApplicationStore();
     const navigate = useNavigate();
 
-    console.log({ type, label, icon, iconType });
-
     const theme = useTheme();
 
-    const onClickItem = () => {
+    const onClickItem = (event: React.MouseEvent<HTMLElement>) => {
         if (type === 'SEPARATOR') return;
 
-        if (to.length > 0) {
-            navigate(to);
+        if (path.length > 0) {
+            navigate(path);
         } else {
-            onClick();
+            onClick(event);
         }
     };
 
@@ -59,55 +60,102 @@ export const AsideItem = ({
     }, [icon, iconType]);
 
     return (
-        <Box
-            sx={{
-                width: '100%',
-                height:
-                    type === 'PRINCIPAL'
-                        ? layoutConfig.header.height - 2
-                        : '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                '&:hover': {
-                    backgroundColor: (theme) => theme.palette.grey[100],
-                },
-                transition: 'all 0.3s ease-in-out',
-            }}
-            onClick={onClickItem}
-        >
-            {/* icon */}
+        <NavLink to={path} style={{ textDecoration: 'none' }}>
             <Box
                 sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
                     width: '100%',
-                    height: '100%',
-                    maxWidth: layoutConfig.aside.width.collapsed,
-                    color: (theme) => theme.palette.text.secondary,
+                    height:
+                        type === 'PRINCIPAL'
+                            ? layoutConfig.header.height - 2
+                            : '40px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    '&:hover': {
+                        backgroundColor: (theme) => theme.palette.grey[100],
+                    },
+                    transition: 'all 0.3s ease-in-out',
+                }}
+                // onClick={onClickItem}
+                // onMouseEnter={onClick}
+                onMouseOver={(event) => {
+                    event.stopPropagation();
+                    onClick(event);
                 }}
             >
-                {renderedIcon}
-            </Box>
-
-            {/* label */}
-            {(isAsideExpanded || isMobile) && label && (
+                {/* icon */}
                 <Box
                     sx={{
                         display: 'flex',
+                        justifyContent: 'center',
                         alignItems: 'center',
-                        flex: 1,
+                        width: '100%',
                         height: '100%',
+                        maxWidth: layoutConfig.aside.width.collapsed,
                         color: (theme) => theme.palette.text.secondary,
-                        fontWeight: 500,
-                        fontSize: 16,
                     }}
                 >
-                    {label}
+                    {renderedIcon}
                 </Box>
-            )}
-        </Box>
+
+                {/* label */}
+                {(isAsideExpanded || isMobile || level > 1) && label && (
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            flex: 1,
+                            height: '100%',
+                            color: (theme) => theme.palette.text.secondary,
+                            fontWeight: 500,
+                            fontSize: 16,
+                        }}
+                    >
+                        {label}
+                    </Box>
+                )}
+
+                {/* expand icon */}
+                {type === 'EXPANSIBLE' &&
+                    (isAsideExpanded || level > 1) &&
+                    (expansibleType === 'DROPDOWN' ? (
+                        <Box
+                            sx={{
+                                color: (theme) => theme.palette.text.secondary,
+                            }}
+                        >
+                            {isExpanded ? (
+                                <MuiIcon
+                                    icon="ArrowDropUp"
+                                    iconProps={{
+                                        color: 'inherit',
+                                    }}
+                                />
+                            ) : (
+                                <MuiIcon
+                                    icon="ArrowDropDown"
+                                    iconProps={{
+                                        color: 'inherit',
+                                    }}
+                                />
+                            )}
+                        </Box>
+                    ) : (
+                        <Box
+                            sx={{
+                                color: (theme) => theme.palette.text.secondary,
+                            }}
+                        >
+                            <MuiIcon
+                                icon="ArrowRight"
+                                iconProps={{
+                                    color: 'inherit',
+                                }}
+                            />
+                        </Box>
+                    ))}
+            </Box>
+        </NavLink>
     );
 };

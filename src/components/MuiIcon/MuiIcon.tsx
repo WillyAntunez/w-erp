@@ -1,6 +1,13 @@
 import * as Icons from '@mui/icons-material';
+import { SvgIconOwnProps } from '@mui/material';
 
-export const MuiIcon = ({ icon }: { icon: string }) => {
+export const MuiIcon = ({
+    icon,
+    iconProps,
+}: {
+    icon: string;
+    iconProps?: SvgIconOwnProps;
+}) => {
     const IconComponent = Icons[icon as keyof typeof Icons] || Icons.Error;
 
     if (!Icons[icon as keyof typeof Icons])
@@ -10,5 +17,5 @@ export const MuiIcon = ({ icon }: { icon: string }) => {
             `The icon ${icon} does not exist in Mui Icons.`,
         );
 
-    return <IconComponent />;
+    return <IconComponent {...iconProps} />;
 };

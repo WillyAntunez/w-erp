@@ -8,6 +8,10 @@ import {
     toggleMobileMenu,
     setMobileMenu,
     setAsideExpanded,
+    toggleAsideMenus,
+    closeAllAsideMenus,
+    setAsideMenu,
+    closeAllAboveAsideMenus,
 } from '../store/slices/applicationSlice';
 import { useMemo } from 'react';
 import { responsiveSizes } from '@/config/responsive';
@@ -16,8 +20,7 @@ export const useApplicationStore = () => {
     const applicationState: ApplicationState = useSelector(
         (state: RootState): ApplicationState => state.application,
     );
-    const { isAsideExpanded, isDarkMode, screenWidth, isMobileMenuOpen } =
-        applicationState;
+    const { isAsideExpanded, screenWidth, isMobileMenuOpen } = applicationState;
 
     const dispatch = useAppDispatch();
 
@@ -72,12 +75,42 @@ export const useApplicationStore = () => {
         };
     };
 
+    const onToggleAsideMenus = (menuName: string, level: number) => {
+        dispatch(
+            toggleAsideMenus({
+                menuName,
+                level,
+                open: !applicationState.asideOpenMenus[menuName]?.open,
+            }),
+        );
+    };
+
+    const onCloseAllAsideMenus = () => {
+        dispatch(closeAllAsideMenus());
+    };
+
+    const onSetAsideMenu = (
+        menuName: string,
+        isOpen: boolean,
+        level: number,
+    ) => {
+        dispatch(
+            setAsideMenu({
+                menuName,
+                level,
+                open: isOpen,
+            }),
+        );
+    };
+
+    const onCloseAllAboveAsideMenus = (level: number) => {
+        dispatch(closeAllAboveAsideMenus(level));
+    };
+
     return {
+        ...applicationState,
+
         // properties
-        isAsideExpanded,
-        isDarkMode,
-        screenWidth,
-        isMobileMenuOpen,
         isMobile,
 
         // methods
@@ -87,6 +120,10 @@ export const useApplicationStore = () => {
         onToggleMobileMenu,
         onSetMobileMenu,
         onSetAsideExpanded,
+        onToggleAsideMenus,
+        onCloseAllAsideMenus,
+        onSetAsideMenu,
+        onCloseAllAboveAsideMenus,
 
         // listeners
         listenScreenWidth,
