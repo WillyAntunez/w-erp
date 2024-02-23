@@ -46,7 +46,7 @@ export const DesplegableAsideItem = ({
         return !!asideOpenMenus?.[itemMenuUniqueKey]?.open;
     }, [asideOpenMenus]);
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    const handleMouseOver = (event: React.MouseEvent<HTMLElement>) => {
         event.stopPropagation();
 
         if (!anchorEl) {
@@ -56,7 +56,6 @@ export const DesplegableAsideItem = ({
         }
 
         if (!open && anchorEl) {
-            // todo: close all above levels
             onCloseAllAboveAsideMenus(level);
             onSetAsideMenu(itemMenuUniqueKey, true, level);
         }
@@ -64,8 +63,6 @@ export const DesplegableAsideItem = ({
 
     const handleClose = () => {
         onCloseAllAsideMenus();
-        // onSetAsideMenu(itemMenuUniqueKey, false);
-        // setAnchorEl(null);
     };
 
     const menuRef = useRef(null);
@@ -88,7 +85,7 @@ export const DesplegableAsideItem = ({
                     type="EXPANSIBLE"
                     expansibleType={expandTypeToRender}
                     isExpanded={open}
-                    onClick={handleClick}
+                    onMouseOver={handleMouseOver}
                     level={level}
                 />
             </Box>

@@ -17,6 +17,7 @@ export const AsideItem = ({
     expansibleType = 'FLOATING',
     isExpanded = false,
     level = 1,
+    onMouseOver = () => {},
 }: IAsideItem = {}) => {
     const { isAsideExpanded, isMobile } = useApplicationStore();
     const navigate = useNavigate();
@@ -77,11 +78,10 @@ export const AsideItem = ({
                     },
                     transition: 'all 0.3s ease-in-out',
                 }}
-                // onClick={onClickItem}
-                // onMouseEnter={onClick}
+                onClick={onClickItem}
                 onMouseOver={(event) => {
                     event.stopPropagation();
-                    onClick(event);
+                    onMouseOver(event);
                 }}
             >
                 {/* icon */}

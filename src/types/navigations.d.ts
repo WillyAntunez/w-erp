@@ -4,6 +4,7 @@ export type INavIconType = 'MUI' | 'FA';
 
 export type AsideItemPropsBase = {
     onClick?: (event: React.MouseEvent<HTMLElement>) => void;
+    onMouseOver?: (event: React.MouseEvent<HTMLElement>) => void;
     label?: string;
     icon?: string | null;
     iconType?: INavIconType;
