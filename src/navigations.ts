@@ -12,6 +12,7 @@ export const navigations: INavigation[] = [
     {
         type: 'SEPARATOR',
     },
+    // floating example
     {
         label: 'Clientes',
         icon: 'PeopleAlt',
@@ -173,6 +174,125 @@ export const navigations: INavigation[] = [
             },
 
             // todo: not displayed routes
+        ],
+    },
+    // dropdown example
+    {
+        label: 'Productos',
+        icon: 'LocalMall',
+        childrenDisplayType: 'DROPDOWN',
+        children: [
+            {
+                label: 'Lista',
+                iconType: 'MUI',
+                icon: 'List',
+                component: lazy(
+                    () => import('./views/customers/ProspectsPage'),
+                ),
+                path: '/products/list',
+            },
+            {
+                label: 'Categorías',
+                iconType: 'MUI',
+                icon: 'Category',
+                component: lazy(
+                    () => import('./views/customers/ProspectsPage'),
+                ),
+                path: '/products/categories',
+            },
+            {
+                label: 'Marcas',
+                iconType: 'MUI',
+                icon: 'LocalOffer',
+                childrenDisplayType: 'DROPDOWN',
+                children: [
+                    {
+                        label: 'Lista',
+                        iconType: 'MUI',
+                        icon: 'List',
+                        component: lazy(
+                            () => import('./views/customers/ProspectsPage'),
+                        ),
+                        path: '/products/brands/list',
+                    },
+                    {
+                        label: 'Children 2',
+                        iconType: 'MUI',
+                        icon: 'ListAlt',
+                        childrenDisplayType: 'DROPDOWN',
+                        children: [
+                            {
+                                label: 'Children 2.1',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 2.2',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                component: lazy(
+                                    () =>
+                                        import(
+                                            './views/customers/ProspectsPage'
+                                        ),
+                                ),
+                                path: '/customers/prospects',
+                            },
+                            {
+                                label: 'Children 2.3',
+                                iconType: 'MUI',
+                                icon: 'ListAlt',
+                                childrenDisplayType: 'DROPDOWN',
+                                children: [
+                                    {
+                                        label: 'Children 2.3.1',
+                                        iconType: 'MUI',
+                                        icon: 'ListAlt',
+                                        component: lazy(
+                                            () =>
+                                                import(
+                                                    './views/customers/ProspectsPage'
+                                                ),
+                                        ),
+                                        path: '/customers/prospects',
+                                    },
+                                    {
+                                        label: 'Children 2.3.2',
+                                        iconType: 'MUI',
+                                        icon: 'ListAlt',
+                                        component: lazy(
+                                            () =>
+                                                import(
+                                                    './views/customers/ProspectsPage'
+                                                ),
+                                        ),
+                                        path: '/customers/prospects',
+                                    },
+                                    {
+                                        label: 'Children 2.3.3',
+                                        iconType: 'MUI',
+                                        icon: 'ListAlt',
+                                        component: lazy(
+                                            () =>
+                                                import(
+                                                    './views/customers/ProspectsPage'
+                                                ),
+                                        ),
+                                        path: '/customers/prospects',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
     },
 ];

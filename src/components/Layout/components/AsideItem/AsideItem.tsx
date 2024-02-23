@@ -17,9 +17,11 @@ export const AsideItem = ({
     expansibleType = 'FLOATING',
     isExpanded = false,
     level = 1,
+    active,
     onMouseOver = () => {},
 }: IAsideItem = {}) => {
-    const { isAsideExpanded, isMobile } = useApplicationStore();
+    const { isAsideExpanded, isMobile, onCloseAllAsideMenus } =
+        useApplicationStore();
     const navigate = useNavigate();
 
     const theme = useTheme();
@@ -27,11 +29,13 @@ export const AsideItem = ({
     const onClickItem = (event: React.MouseEvent<HTMLElement>) => {
         if (type === 'SEPARATOR') return;
 
-        if (path.length > 0) {
-            navigate(path);
+        if (type === 'EXPANSIBLE') {
+            event.preventDefault();
         } else {
-            onClick(event);
+            onCloseAllAsideMenus();
         }
+
+        onClick(event);
     };
 
     if (type === 'SEPARATOR') {
@@ -61,7 +65,11 @@ export const AsideItem = ({
     }, [icon, iconType]);
 
     return (
-        <NavLink to={path} style={{ textDecoration: 'none' }}>
+        <NavLink
+            to={type !== 'EXPANSIBLE' ? path : '#'}
+            onClick={onClickItem}
+            style={{ textDecoration: 'none' }}
+        >
             <Box
                 sx={{
                     width: '100%',
@@ -76,9 +84,11 @@ export const AsideItem = ({
                     '&:hover': {
                         backgroundColor: (theme) => theme.palette.grey[100],
                     },
+                    backgroundColor: active
+                        ? theme.palette.grey[200]
+                        : 'inherit',
                     transition: 'all 0.3s ease-in-out',
                 }}
-                onClick={onClickItem}
                 onMouseOver={(event) => {
                     event.stopPropagation();
                     onMouseOver(event);

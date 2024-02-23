@@ -22,6 +22,7 @@ export interface IAsideItem extends AsideItemPropsBase {
     isExpanded?: boolean;
     path?: string;
     level?: number;
+    active?: boolean;
 }
 
 export interface INavigation extends IAsideItem {
