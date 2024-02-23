@@ -32,47 +32,52 @@ export const Content = ({
             }}
         >
             {/* titleBar */}
-            <Box
-                sx={{
-                    height: `${layoutConfig.header.height}px`,
-                    borderBottom: '1px solid #EAEAEA',
-                    backgroundColor: (theme) => 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '10px 20px',
-                }}
-            >
+            {showTitleBar ? (
                 <Box
                     sx={{
-                        color: (theme) => theme.palette.grey[600],
-                        fontSize: 16,
-
-                        mt: '2px',
+                        height: `${layoutConfig.header.height}px`,
+                        borderBottom: '1px solid #EAEAEA',
+                        backgroundColor: (theme) => 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        padding: '10px 20px',
                     }}
                 >
-                    {icon && iconType === 'MUI' ? (
-                        <MuiIcon
-                            icon={icon}
-                            iconProps={{
-                                fontSize: 'inherit',
-                            }}
-                        />
-                    ) : null}
-                    {icon && iconType === 'FA' ? (
-                        <i className={icon} style={{ marginRight: '10px' }} />
-                    ) : null}
-                </Box>
+                    <Box
+                        sx={{
+                            color: (theme) => theme.palette.grey[600],
+                            fontSize: 16,
 
-                <Box
-                    sx={{
-                        fontSize: 16,
-                        color: (theme) => theme.palette.grey[600],
-                        ml: 1,
-                    }}
-                >
-                    {title}
+                            mt: '2px',
+                        }}
+                    >
+                        {icon && iconType === 'MUI' ? (
+                            <MuiIcon
+                                icon={icon}
+                                iconProps={{
+                                    fontSize: 'inherit',
+                                }}
+                            />
+                        ) : null}
+                        {icon && iconType === 'FA' ? (
+                            <i
+                                className={icon}
+                                style={{ marginRight: '10px' }}
+                            />
+                        ) : null}
+                    </Box>
+
+                    <Box
+                        sx={{
+                            fontSize: 16,
+                            color: (theme) => theme.palette.grey[600],
+                            ml: 1,
+                        }}
+                    >
+                        {title}
+                    </Box>
                 </Box>
-            </Box>
+            ) : null}
 
             {/* content */}
             <Box

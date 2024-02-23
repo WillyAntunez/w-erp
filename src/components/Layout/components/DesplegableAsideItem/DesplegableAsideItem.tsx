@@ -62,11 +62,13 @@ export const DesplegableAsideItem = ({
             itemMenuUniqueKey,
         ) as HTMLElement;
 
-        if (newAnchorEl) {
-            setAnchorEl(newAnchorEl);
+        if (!anchorEl) {
+            if (newAnchorEl) {
+                setAnchorEl(newAnchorEl);
+            }
         }
 
-        if (!open && newAnchorEl) {
+        if (!open && (newAnchorEl || anchorEl)) {
             onCloseAllAboveAsideMenus(level);
             onSetAsideMenu(itemMenuUniqueKey, true, level);
         } else if (open && expandTypeToRender === 'DROPDOWN') {
