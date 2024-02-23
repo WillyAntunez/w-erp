@@ -154,6 +154,7 @@ export const Aside = () => {
                                 ? onToggleMobileMenu()
                                 : onToggleAsideExpanded();
                         }}
+                        keepAsideOpen={true}
                     />
                 </Grid>
             </Box>

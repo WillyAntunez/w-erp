@@ -19,8 +19,6 @@ export const Layout = ({ children }: LayoutProps) => {
                 sx={{
                     gridArea: 'content',
                     minHeight: '100%',
-                    boxShadow: 'inset 0px 4px 42px 0px rgba(0, 0, 0, 0.05)',
-                    padding: 2,
                 }}
             >
                 {children}

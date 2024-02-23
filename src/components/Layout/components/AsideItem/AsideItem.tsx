@@ -19,10 +19,15 @@ export const AsideItem = ({
     level = 1,
     active,
     onMouseOver = () => {},
+    keepAsideOpen = false,
 }: IAsideItem = {}) => {
-    const { isAsideExpanded, isMobile, onCloseAllAsideMenus } =
-        useApplicationStore();
-    const navigate = useNavigate();
+    const {
+        isAsideExpanded,
+        isMobile,
+        onCloseAllAsideMenus,
+        onSetAsideExpanded,
+        onSetMobileMenu,
+    } = useApplicationStore();
 
     const theme = useTheme();
 
@@ -33,6 +38,10 @@ export const AsideItem = ({
             event.preventDefault();
         } else {
             onCloseAllAsideMenus();
+            if (!keepAsideOpen) {
+                onSetAsideExpanded(false);
+                onSetMobileMenu(false);
+            }
         }
 
         onClick(event);
@@ -85,7 +94,7 @@ export const AsideItem = ({
                         backgroundColor: (theme) => theme.palette.grey[100],
                     },
                     backgroundColor: active
-                        ? theme.palette.grey[200]
+                        ? theme.palette.grey[100]
                         : 'inherit',
                     transition: 'all 0.3s ease-in-out',
                 }}

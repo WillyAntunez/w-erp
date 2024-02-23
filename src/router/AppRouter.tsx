@@ -1,5 +1,8 @@
 import { HashRouter, Route, Routes, BrowserRouter } from 'react-router-dom';
-import { DashboardRouter } from './dashboard/DashboardRouter';
+import {
+    DashboardRouter,
+    NoLayoutDashboardRouter,
+} from './dashboard/DashboardRouter';
 
 export const AppRouter = () => {
     return (
@@ -7,6 +10,11 @@ export const AppRouter = () => {
             <Routes>
                 {/* dashboard */}
                 <Route path="/*" element={<DashboardRouter />} />
+                {/* no layout dashboard */}
+                <Route
+                    path="/no-layout/*"
+                    element={<NoLayoutDashboardRouter />}
+                />
             </Routes>
         </BrowserRouter>
     );

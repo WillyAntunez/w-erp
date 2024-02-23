@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useApplicationStore } from '@/hooks/useApplicationStore';
 import {
     AsideItemPropsBase,
@@ -94,6 +94,16 @@ export const DesplegableAsideItem = ({
         }
     });
 
+    useLayoutEffect(() => {
+        const newAnchorEl = document.getElementById(
+            itemMenuUniqueKey,
+        ) as HTMLElement;
+
+        if (newAnchorEl) {
+            setAnchorEl(newAnchorEl);
+        }
+    }, []);
+
     return (
         <>
             <Box id="aside-floating-menu">
@@ -119,13 +129,13 @@ export const DesplegableAsideItem = ({
                 </Box>
 
                 {expandTypeToRender === 'FLOATING' ? (
-                    !open ? null : (
+                    !open && anchorEl ? null : (
                         <StyledMenu
                             id="aside-floating-menu"
                             MenuListProps={{
                                 'aria-labelledby': 'demo-customized-button',
                             }}
-                            ref={menuRef}
+                            // ref={menuRef}
                             hideBackdrop
                             anchorEl={anchorEl}
                             open={open}
@@ -148,7 +158,6 @@ export const DesplegableAsideItem = ({
                     open ? (
                         <Box
                             sx={{
-                                paddingLeft: '5px',
                                 backgroundColor: 'rgb(245 245 245 / 17%)',
                             }}
                             id="aside-floating-menu"

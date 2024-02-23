@@ -56,4 +56,8 @@ export const DashboardRouter = () => {
     );
 };
 
+export const NoLayoutDashboardRouter = () => {
+    return <Routes>{getRoutes(navigations)}</Routes>;
+};
+
 export default DashboardRouter;
