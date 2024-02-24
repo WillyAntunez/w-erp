@@ -4,10 +4,10 @@ A brief description of the project.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+-   [Installation](#installation)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
 ## Installation
 
@@ -24,12 +24,9 @@ A brief description of the project.
 ## Contributing
 
 Contributions are welcome! Please follow these guidelines:
-- Fork the repository.
-- Create a new branch: `git checkout -b feature/your-feature`
-- Make your changes and commit them: `git commit -m 'Add your feature'`
-- Push to the branch: `git push origin feature/your-feature`
-- Submit a pull request.
 
-## License
-
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+-   Fork the repository.
+-   Create a new branch: `git checkout -b feature/your-feature`
+-   Make your changes and commit them: `git commit -m 'Add your feature'`
+-   Push to the branch: `git push origin feature/your-feature`
+-   Submit a pull request.

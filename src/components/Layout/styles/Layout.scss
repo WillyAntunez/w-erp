@@ -8,3 +8,11 @@
         'sidebar header'
         'sidebar content';
 }
+
+#aside-floating-menu {
+    pointer-events: none;
+}
+
+#aside-floating-menu * {
+    pointer-events: auto;
+}

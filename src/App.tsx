@@ -1,7 +1,13 @@
-import { AppRouter } from "./router/AppRouter";
+import { useEffect } from 'react';
+import { AppRouter } from './router/AppRouter';
+import { useApplicationStore } from './hooks/useApplicationStore';
 
 function App() {
-  return <AppRouter />;
+    const { listenScreenWidth } = useApplicationStore();
+
+    useEffect(listenScreenWidth, []);
+
+    return <AppRouter />;
 }
 
 export default App;
