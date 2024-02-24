@@ -17,7 +17,8 @@ export interface IAsideItem extends AsideItemPropsBase {
         | 'BUTTON'
         | 'INTERNAL'
         | 'EXTERNAL'
-        | 'PRINCIPAL';
+        | 'PRINCIPAL'
+        | 'ROUTE-ONLY';
     expansibleType?: INavChildrenDisplayType;
     isExpanded?: boolean;
     path?: string;

@@ -11,6 +11,8 @@ const generateAsideItems = (
     const items: JSX.Element[] = [];
 
     navigations.forEach((nav, index) => {
+        if (nav.type === 'ROUTE-ONLY') return;
+
         if (nav.children) {
             items.push(
                 <DesplegableAsideItem

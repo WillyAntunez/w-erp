@@ -287,6 +287,30 @@ export const navigations: INavigation[] = [
                                         ),
                                         path: '/customers/prospects',
                                     },
+
+                                    // hidden routes
+                                    {
+                                        label: 'Ruta oculta 1',
+                                        type: 'ROUTE-ONLY',
+                                        component: lazy(
+                                            () =>
+                                                import(
+                                                    './views/customers/ProspectsPage'
+                                                ),
+                                        ),
+                                        path: '/hidden/route/1',
+                                    },
+                                    {
+                                        label: 'Ruta oculta 2',
+                                        type: 'ROUTE-ONLY',
+                                        component: lazy(
+                                            () =>
+                                                import(
+                                                    './views/customers/ProspectsPage'
+                                                ),
+                                        ),
+                                        path: '/hidden/route/2',
+                                    },
                                 ],
                             },
                         ],
