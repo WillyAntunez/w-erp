@@ -21,6 +21,8 @@ export const ComponentLoader = ({
 export const getRoutes = (navigations: INavigation[]): JSX.Element[] => {
     let routes: JSX.Element[] = [];
 
+    let paths: string[] = [];
+
     const getRoutesInternal = (navigations: INavigation[]): JSX.Element[] => {
         let result: JSX.Element[] = [];
 
@@ -28,6 +30,16 @@ export const getRoutes = (navigations: INavigation[]): JSX.Element[] => {
             if (navigation.children) {
                 result = [...result, ...getRoutesInternal(navigation.children)];
             } else if (navigation.path) {
+                if (paths.includes(navigation.path)) {
+                    return console.warn(
+                        'Duplicate path: ' +
+                            navigation.path +
+                            ' in navigations',
+                    );
+                }
+
+                paths.push(navigation.path);
+
                 result.push(
                     <Route
                         key={navigation.path}
