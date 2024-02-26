@@ -19,6 +19,7 @@ export const Layout = ({ children }: LayoutProps) => {
                 sx={{
                     gridArea: 'content',
                     minHeight: '100%',
+                    overflow: 'auto',
                 }}
             >
                 {children}

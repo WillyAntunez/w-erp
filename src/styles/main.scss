@@ -19,3 +19,8 @@ body,
     display: none;
   }
 }
+
+/* mui buttons not allways in uppercase */
+.MuiButton-root {
+  text-transform: none !important;
+}

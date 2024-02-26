@@ -1,7 +1,8 @@
+import { Content } from '@/components/Layout/components/Content/Content';
 import React from 'react';
 
 export const EmployeesListPage = () => {
-    return <div>index</div>;
+    return <Content title="Empleados" icon={'Engineering'}></Content>;
 };
 
 export default EmployeesListPage;
