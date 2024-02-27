@@ -4,6 +4,8 @@ import { Box, Grid, Typography } from '@mui/material';
 import CustomerProfileCard from './Components/Cards/CustomerProfileCard';
 import CardContainer from '@/components/CardContainer';
 import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
+import { CustomerContactCard } from './Components/Cards/CustomerContactCard';
+import RoutedTabs from '@/components/RoutedTabs';
 
 export const CustomerDetailsPage = () => {
     return (
@@ -45,155 +47,62 @@ export const CustomerDetailsPage = () => {
                         height: 'auto',
                     }}
                 >
-                    <CardContainer
-                        title="Información de contacto"
-                        sx={{
-                            height: '100%',
-                        }}
-                    >
-                        <Grid container spacing={2} pt={1}>
-                            {/* address */}
-                            <Grid
-                                item
-                                xs={12}
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap: 'nowrap',
-                                    gap: 1,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    <MuiIcon
-                                        icon="LocationOn"
-                                        iconProps={{
-                                            color: 'inherit',
-                                            fontSize: 'small',
-                                        }}
-                                    />
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        fontSize: 14,
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    Avenida Innovación #123, Parque Tecnológico,
-                                    Ciudad Tecnológica, Estado TecLand.
-                                </Typography>
-                            </Grid>
+                    <CustomerContactCard />
+                </Grid>
 
-                            {/* phone */}
-                            <Grid
-                                item
-                                xs={12}
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap: 'nowrap',
-                                    gap: 1,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    <MuiIcon
-                                        icon="Phone"
-                                        iconProps={{
-                                            color: 'inherit',
-                                            fontSize: 'small',
-                                        }}
-                                    />
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        fontSize: 14,
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    +504 2323-2414
-                                </Typography>
-                            </Grid>
-
-                            {/* email 1 */}
-                            <Grid
-                                item
-                                xs={12}
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap: 'nowrap',
-                                    gap: 1,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    <MuiIcon
-                                        icon="Email"
-                                        iconProps={{
-                                            color: 'inherit',
-                                            fontSize: 'small',
-                                        }}
-                                    />
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        fontSize: 14,
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    contacto@email.com
-                                </Typography>
-                            </Grid>
-
-                            {/* email 2 */}
-                            <Grid
-                                item
-                                xs={12}
-                                sx={{
-                                    display: 'flex',
-                                    flexWrap: 'nowrap',
-                                    gap: 1,
-                                }}
-                            >
-                                <Box
-                                    sx={{
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    <MuiIcon
-                                        icon="Email"
-                                        iconProps={{
-                                            color: 'inherit',
-                                            fontSize: 'small',
-                                        }}
-                                    />
-                                </Box>
-                                <Typography
-                                    sx={{
-                                        fontSize: 14,
-                                        color: (theme) =>
-                                            theme.palette.grey[600],
-                                    }}
-                                >
-                                    contacto2@email.com
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </CardContainer>
+                <Grid item xs={12}>
+                    <Grid container>
+                        <RoutedTabs
+                            tabs={[
+                                {
+                                    label: 'Resumen',
+                                    slug: 'summary',
+                                    content: <h2>Resumen</h2>,
+                                },
+                                {
+                                    label: 'Contactos',
+                                    slug: 'contacts',
+                                    content: <h2>Contactos</h2>,
+                                },
+                                {
+                                    label: 'Historial de compras',
+                                    slug: 'purchases',
+                                    content: <h2>Historial de compras</h2>,
+                                },
+                                {
+                                    label: 'Oportunidades de venta',
+                                    slug: 'sales-opportunities',
+                                    content: <h2>Oportunidades de venta</h2>,
+                                },
+                                {
+                                    label: 'Saldos y pagos',
+                                    slug: 'balances-payments',
+                                    content: <h2>Saldos y pagos</h2>,
+                                },
+                                {
+                                    label: 'Envios y logistica',
+                                    slug: 'shipping-logistics',
+                                    content: <h2>Envios y logistica</h2>,
+                                },
+                                {
+                                    label: 'Historial de actividad',
+                                    slug: 'activity-history',
+                                    content: <h2>Historial de actividad</h2>,
+                                },
+                                {
+                                    label: 'Tickets de soporte',
+                                    slug: 'support-tickets',
+                                    content: <h2>Tickets de soporte</h2>,
+                                },
+                                {
+                                    label: 'Notas y comentarios',
+                                    slug: 'notes-comments',
+                                    content: <h2>Notas y comentarios</h2>,
+                                },
+                            ]}
+                            queryMode
+                        />
+                    </Grid>
                 </Grid>
             </Grid>
         </Content>
