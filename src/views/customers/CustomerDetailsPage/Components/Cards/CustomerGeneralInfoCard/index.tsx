@@ -70,7 +70,7 @@ export const CustomerGeneralInfoCard = () => {
                             color: (theme) => theme.palette.grey[800],
                         }}
                     >
-                        Categoría
+                        Segmentación
                     </Typography>
                 </Grid>
 

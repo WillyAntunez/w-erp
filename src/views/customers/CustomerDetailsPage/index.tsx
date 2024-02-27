@@ -1,9 +1,7 @@
 import { Content } from '@/components/Layout/components/Content/Content';
 import { CustomerGeneralInfoCard } from './Components/Cards/CustomerGeneralInfoCard';
-import { Box, Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import CustomerProfileCard from './Components/Cards/CustomerProfileCard';
-import CardContainer from '@/components/CardContainer';
-import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
 import { CustomerContactCard } from './Components/Cards/CustomerContactCard';
 import RoutedTabs from '@/components/RoutedTabs';
 
@@ -58,6 +56,11 @@ export const CustomerDetailsPage = () => {
                                     label: 'Resumen',
                                     slug: 'summary',
                                     content: <h2>Resumen</h2>,
+                                },
+                                {
+                                    label: 'Calendario',
+                                    slug: 'calendar',
+                                    content: <h2>Agenda</h2>,
                                 },
                                 {
                                     label: 'Contactos',
