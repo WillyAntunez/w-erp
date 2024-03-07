@@ -1,12 +1,25 @@
-import { Box, Button, Chip, Grid, TextField, Typography } from '@mui/material';
+import {
+    Box,
+    Button,
+    Chip,
+    ChipProps,
+    Grid,
+    TextField,
+    Typography,
+} from '@mui/material';
 import { Content } from '@/components/Layout/components/Content/Content';
 import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
 import { NavLink } from 'react-router-dom';
 import { TypeColumn } from '@inovua/reactdatagrid-community/types';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactDataGrid from '@inovua/reactdatagrid-community';
 import Summary, { ISummaryArray } from '@/components/Summary';
 import { ActionsCell } from '../../../components/Tables/ActionsCell';
+import { getCustomers } from '@/api/erp/customers';
+import { ICustomerSummary } from '@/types/api/customer';
+import { dateFormatStrings, statuses } from '@/utils/constants';
+import { getPersonType, getStatus } from '@/utils/getConstants';
+import { formatDate } from '@/utils/formatDate';
 
 const customerDatagridColumns: TypeColumn[] = [
     {
@@ -25,30 +38,90 @@ const customerDatagridColumns: TypeColumn[] = [
         },
     },
     {
-        name: 'state',
+        name: 'status',
         header: 'Estado',
         width: 100,
+        render: ({ data }) => {
+            const statusObj = getStatus(data.status);
+
+            return (
+                <Chip
+                    color={statusObj.color as ChipProps['color']}
+                    label={statusObj.name}
+                    size="small"
+                />
+            );
+        },
     },
     {
         name: 'type',
         header: 'Tipo',
         width: 100,
+        render: ({ data }) => {
+            const personType = getPersonType(data.type);
+
+            return (
+                <Chip
+                    color={personType.color as ChipProps['color']}
+                    label={personType.name}
+                    size="small"
+                />
+            );
+        },
     },
     {
         name: 'email',
         header: 'Correo electrónico',
+        render: ({ data }: { data: ICustomerSummary }) => {
+            return (
+                <a
+                    href={`mailto:${data.contactInfo.email}`}
+                    style={{ textDecoration: 'none' }}
+                >
+                    {data.contactInfo.email}
+                </a>
+            );
+        },
     },
     {
         name: 'phone',
         header: 'Telefono',
+        render: ({ data }: { data: ICustomerSummary }) => {
+            return <Typography>{data.contactInfo.phone}</Typography>;
+        },
     },
     {
         name: 'firstContact',
         header: 'Primera interaccion',
+        width: 150,
+        render: ({ data }: { data: ICustomerSummary }) => {
+            return (
+                <Typography>
+                    {formatDate(data.createdAt, dateFormatStrings.dateWithTime)}
+                </Typography>
+            );
+        },
     },
     {
         name: 'lastContact',
         header: 'Ultima interaccion',
+        width: 150,
+        render: ({
+            data,
+            value,
+        }: {
+            data: ICustomerSummary;
+            value: string | null;
+        }) => {
+            return (
+                <Typography>
+                    {formatDate(
+                        value || data.createdAt,
+                        dateFormatStrings.dateWithTime,
+                    )}
+                </Typography>
+            );
+        },
     },
     {
         name: 'actions',
@@ -60,31 +133,8 @@ const customerDatagridColumns: TypeColumn[] = [
     },
 ];
 
-const customerExamples = [
-    {
-        id: 1,
-        name: 'John Doe',
-        state: 'Activo',
-        type: 'Natural',
-        email: 'example@gmail.com',
-        phone: '123456789',
-        firstContact: '2021-10-10',
-        lastContact: '2021-10-10',
-    },
-    {
-        id: 2,
-        name: 'Jane Doe',
-        state: 'Activo',
-        type: 'Natural',
-        email: 'example2',
-        phone: '123456789',
-        firstContact: '2021-10-10',
-        lastContact: '2021-10-10',
-    },
-];
-
 export const CustomersListPage = () => {
-    const [customers, setCustomers] = useState(customerExamples);
+    const [customers, setCustomers] = useState<ICustomerSummary[]>([]);
 
     const summaryData: ISummaryArray = useMemo(() => {
         return [
@@ -109,6 +159,20 @@ export const CustomersListPage = () => {
                 value: 15,
             },
         ];
+    }, []);
+
+    const loadData = async () => {
+        const customersResponse = await getCustomers();
+
+        console.log(customersResponse);
+
+        if (customersResponse.success && customersResponse.data) {
+            setCustomers(customersResponse.data);
+        }
+    };
+
+    useEffect(() => {
+        loadData();
     }, []);
 
     return (
