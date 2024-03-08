@@ -1,0 +1,24 @@
+{
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "status": "Estado",
+    "type": "Tipo",
+    "actions": "Acciones",
+    "first-interaction": "Primera interacción",
+    "last-interaction": "Última interacción",
+    "filters": "Filtros",
+    "update": "Actualizar",
+    "search": "Buscar",
+    "view": "Ver",
+    "edit": "Editar",
+    "delete": "Eliminar",
+
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "blocked": "Bloqueado",
+    "deleted": "Eliminado",
+
+    "natural-person": "Persona natural",
+    "legal-person": "Persona jurídica"
+}

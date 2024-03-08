@@ -1,0 +1,26 @@
+{
+    "en": {
+        "title": "Customers",
+        "description": "The customer administration view provides a centralized interface for managing and accessing information for all clients registered in the system.",
+        "add-customers": "Add Customers",
+
+        "total-customers": "Total Customers",
+        "active-customers": "Active Customers",
+        "inactive-customers": "Inactive Customers",
+        "new-customers": "New Customers",
+        "potential-customers": "Potential Customers",
+        "no-customers-found": "No customers found"
+    },
+    "es": {
+        "title": "Clientes",
+        "description": "La vista de administración de clientes proporciona una interfaz centralizada para gestionar y acceder a la información de todos los clientes registrados en el sistema.",
+        "add-customers": "Añadir Clientes",
+
+        "total-customers": "Clientes Totales",
+        "active-customers": "Clientes Activos",
+        "inactive-customers": "Clientes Inactivos",
+        "new-customers": "Nuevos Clientes",
+        "potential-customers": "Clientes Potenciales",
+        "no-customers-found": "No se encontraron clientes"
+    }
+}

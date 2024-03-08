@@ -21,6 +21,11 @@ import { dateFormatStrings, statuses } from '@/utils/constants';
 import { getPersonType, getStatus } from '@/utils/getConstants';
 import { formatDate } from '@/utils/formatDate';
 
+import { useTranslation } from 'react-i18next';
+import i18next from '@/locales/config';
+
+import translations from './CustomersListPage.t.json';
+
 const customerDatagridColumns: TypeColumn[] = [
     {
         name: 'id',
@@ -30,7 +35,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'name',
-        header: 'Nombre',
+        header: i18next.t('name'),
         flex: 1,
         minWidth: 200,
         render: ({ data, value }) => {
@@ -39,7 +44,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'status',
-        header: 'Estado',
+        header: i18next.t('status'),
         width: 100,
         render: ({ data }) => {
             const statusObj = getStatus(data.status);
@@ -55,7 +60,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'type',
-        header: 'Tipo',
+        header: i18next.t('type'),
         width: 100,
         render: ({ data }) => {
             const personType = getPersonType(data.type);
@@ -71,7 +76,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'email',
-        header: 'Correo electrónico',
+        header: i18next.t('email'),
         render: ({ data }: { data: ICustomerSummary }) => {
             return (
                 <a
@@ -85,14 +90,14 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'phone',
-        header: 'Telefono',
+        header: i18next.t('phone'),
         render: ({ data }: { data: ICustomerSummary }) => {
             return <Typography>{data.contactInfo.phone}</Typography>;
         },
     },
     {
         name: 'firstContact',
-        header: 'Primera interaccion',
+        header: i18next.t('first-interaction'),
         width: 150,
         render: ({ data }: { data: ICustomerSummary }) => {
             return (
@@ -104,7 +109,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'lastContact',
-        header: 'Ultima interaccion',
+        header: i18next.t('last-interaction'),
         width: 150,
         render: ({
             data,
@@ -125,7 +130,7 @@ const customerDatagridColumns: TypeColumn[] = [
     },
     {
         name: 'actions',
-        header: 'Acciones',
+        header: i18next.t('actions'),
         width: 90,
         render: ({ data }) => {
             return <ActionsCell row={data} />;
@@ -134,28 +139,33 @@ const customerDatagridColumns: TypeColumn[] = [
 ];
 
 export const CustomersListPage = () => {
+    const { t, i18n } = useTranslation('CustomersListPage');
+
     const [customers, setCustomers] = useState<ICustomerSummary[]>([]);
+
+    i18n.addResourceBundle('es', 'CustomersListPage', translations.es);
+    i18n.addResourceBundle('en', 'CustomersListPage', translations.en);
 
     const summaryData: ISummaryArray = useMemo(() => {
         return [
             {
-                label: 'Clientes totales',
+                label: t('total-customers'),
                 value: 15,
             },
             {
-                label: 'Clientes activos',
+                label: t('active-customers'),
                 value: 10,
             },
             {
-                label: 'Clientes inactivos',
+                label: t('inactive-customers'),
                 value: 5,
             },
             {
-                label: 'Clientes nuevos',
+                label: t('new-customers'),
                 value: 3,
             },
             {
-                label: 'Clientes potenciales',
+                label: t('potential-customers'),
                 value: 15,
             },
         ];
@@ -163,8 +173,6 @@ export const CustomersListPage = () => {
 
     const loadData = async () => {
         const customersResponse = await getCustomers();
-
-        console.log(customersResponse);
 
         if (customersResponse.success && customersResponse.data) {
             setCustomers(customersResponse.data);
@@ -176,7 +184,7 @@ export const CustomersListPage = () => {
     }, []);
 
     return (
-        <Content title="Cientes" icon={'Contacts'}>
+        <Content title={t('title')} icon={'Contacts'}>
             <Box
                 padding={2}
                 sx={{
@@ -187,11 +195,7 @@ export const CustomersListPage = () => {
                 }}
             >
                 {/* description */}
-                <Typography fontSize={14}>
-                    La vista de administración de clientes proporciona una
-                    interfaz centralizada para gestionar y acceder a la
-                    información de todos los clientes registrados en el sistema.
-                </Typography>
+                <Typography fontSize={14}>{t('description')}</Typography>
 
                 {/* summary */}
                 <Summary
@@ -230,7 +234,9 @@ export const CustomersListPage = () => {
                                             fontSize: 'inherit',
                                         }}
                                     >
-                                        Filtros{' '}
+                                        {t('filters', {
+                                            ns: 'common',
+                                        })}
                                     </Typography>
                                 </Button>
                             </Grid>
@@ -274,7 +280,9 @@ export const CustomersListPage = () => {
                             {/* search input */}
                             <Grid item>
                                 <TextField
-                                    label="Buscar"
+                                    label={t('search', {
+                                        ns: 'common',
+                                    })}
                                     size="small"
                                     variant={'standard'}
                                     /* end adornment */
@@ -301,7 +309,9 @@ export const CustomersListPage = () => {
                                     }}
                                     endIcon={<MuiIcon icon="Refresh" />}
                                 >
-                                    Actualizar
+                                    {t('update', {
+                                        ns: 'common',
+                                    })}
                                 </Button>
                             </Grid>
 
@@ -315,7 +325,7 @@ export const CustomersListPage = () => {
                                     }}
                                     endIcon={<MuiIcon icon="Add" />}
                                 >
-                                    Agregar clientes
+                                    {t('add-customers')}
                                 </Button>
                             </Grid>
                         </Grid>
@@ -327,7 +337,7 @@ export const CustomersListPage = () => {
                     <ReactDataGrid
                         columns={customerDatagridColumns}
                         dataSource={customers}
-                        emptyText="No se encontraron registros"
+                        emptyText={t('no-customers-found')}
                     />
                 </Grid>
             </Box>

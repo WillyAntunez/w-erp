@@ -1,3 +1,5 @@
+import i18next from '@/locales/config';
+
 // * status
 export const statusNames = {
     active: 'A',
@@ -8,19 +10,19 @@ export const statusNames = {
 
 export const statuses = {
     A: {
-        name: 'Activo',
+        name: i18next.t('active'),
         color: 'success',
     },
     I: {
-        name: 'Inactivo',
+        name: i18next.t('inactive'),
         color: 'danger',
     },
     B: {
-        name: 'Bloqueado',
+        name: i18next.t('blocked'),
         color: 'warning',
     },
     D: {
-        name: 'Eliminado',
+        name: i18next.t('deleted'),
         color: 'danger',
     },
 };
@@ -33,11 +35,11 @@ export const personTypesNames = {
 
 export const personTypes = {
     [personTypesNames.natural]: {
-        name: 'Natural',
+        name: i18next.t('natural-person'),
         color: 'primary',
     },
     [personTypesNames.legal]: {
-        name: 'Jurídica',
+        name: i18next.t('legal-person'),
         color: 'info',
     },
 };
