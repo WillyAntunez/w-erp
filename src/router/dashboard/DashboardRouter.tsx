@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from '@/components/Layout/Layout';
 import { navigations } from '@/navigations';
 import { INavigation } from '@/types/navigations';
+import AbsoluteLoader from '@/components/AbsoluteLoader';
 
 export const ComponentLoader = ({
     component,
@@ -12,7 +13,7 @@ export const ComponentLoader = ({
     const Component = component;
 
     return (
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<AbsoluteLoader />}>
             <Component />
         </React.Suspense>
     );

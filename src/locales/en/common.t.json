@@ -19,6 +19,8 @@
     "blocked": "Blocked",
     "deleted": "Deleted",
 
+    "loading": "Loading",
+
     "natural-person": "Natural person",
     "legal-person": "Legal person"
 }

@@ -9,7 +9,9 @@
         "inactive-customers": "Inactive Customers",
         "new-customers": "New Customers",
         "potential-customers": "Potential Customers",
-        "no-customers-found": "No customers found"
+        "no-customers-found": "No customers found",
+
+        "loading-customers": "Loading Customers"
     },
     "es": {
         "title": "Clientes",
@@ -21,6 +23,8 @@
         "inactive-customers": "Clientes Inactivos",
         "new-customers": "Nuevos Clientes",
         "potential-customers": "Clientes Potenciales",
-        "no-customers-found": "No se encontraron clientes"
+        "no-customers-found": "No se encontraron clientes",
+
+        "loading-customers": "Cargando Clientes"
     }
 }

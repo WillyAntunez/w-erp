@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next';
 import i18next from '@/locales/config';
 
 import translations from './CustomersListPage.t.json';
+import AbsoluteLoader from '@/components/AbsoluteLoader';
 
 const customerDatagridColumns: TypeColumn[] = [
     {
@@ -61,7 +62,7 @@ const customerDatagridColumns: TypeColumn[] = [
     {
         name: 'type',
         header: i18next.t('type'),
-        width: 100,
+        width: 130,
         render: ({ data }) => {
             const personType = getPersonType(data.type);
 
@@ -146,6 +147,8 @@ export const CustomersListPage = () => {
     i18n.addResourceBundle('es', 'CustomersListPage', translations.es);
     i18n.addResourceBundle('en', 'CustomersListPage', translations.en);
 
+    const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
+
     const summaryData: ISummaryArray = useMemo(() => {
         return [
             {
@@ -172,11 +175,15 @@ export const CustomersListPage = () => {
     }, []);
 
     const loadData = async () => {
+        setIsLoadingCustomers(true);
+
         const customersResponse = await getCustomers();
 
         if (customersResponse.success && customersResponse.data) {
             setCustomers(customersResponse.data);
         }
+
+        setIsLoadingCustomers(false);
     };
 
     useEffect(() => {
@@ -192,6 +199,7 @@ export const CustomersListPage = () => {
                     flexDirection: 'column',
                     height: '100%',
                     flex: 1,
+                    position: 'relative',
                 }}
             >
                 {/* description */}
@@ -308,6 +316,7 @@ export const CustomersListPage = () => {
                                         fontSize: 13,
                                     }}
                                     endIcon={<MuiIcon icon="Refresh" />}
+                                    onClick={loadData}
                                 >
                                     {t('update', {
                                         ns: 'common',
@@ -340,6 +349,11 @@ export const CustomersListPage = () => {
                         emptyText={t('no-customers-found')}
                     />
                 </Grid>
+
+                <AbsoluteLoader
+                    message={t('loading-customers')}
+                    open={isLoadingCustomers}
+                />
             </Box>
         </Content>
     );

@@ -7,8 +7,8 @@
     "author": "Willy Emanuel Antunez Gonzales",
     "homepage": ".",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
+        "dev": "vite --mode dev",
+        "build": "tsc && vite build --mode prod",
         "preview": "vite preview"
     },
     "dependencies": {

@@ -8,10 +8,11 @@ import common_es from './es/common.t.json';
 
 // read default language from vite .env
 const defaultLanguage = import.meta.env.VITE_DEFAULT_LANGUAGE;
+const devMode = import.meta.env.MODE === 'dev';
 
 i18next.use(initReactI18next).init({
     lng: defaultLanguage, // if you're using a language detector, do not define the lng option
-    debug: true,
+    debug: devMode,
     resources: {
         en: {
             [defaultNS]: common_en,
