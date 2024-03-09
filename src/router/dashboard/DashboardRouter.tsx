@@ -4,6 +4,7 @@ import { Layout } from '@/components/Layout/Layout';
 import { navigations } from '@/navigations';
 import { INavigation } from '@/types/navigations';
 import AbsoluteLoader from '@/components/AbsoluteLoader';
+import NotFound from '@/components/NotFound';
 
 export const ComponentLoader = ({
     component,
@@ -64,13 +65,21 @@ export const getRoutes = (navigations: INavigation[]): JSX.Element[] => {
 export const DashboardRouter = () => {
     return (
         <Layout>
-            <Routes>{getRoutes(navigations)}</Routes>
+            <Routes>
+                {getRoutes(navigations)}
+                <Route path="/*" element={<NotFound />} />
+            </Routes>
         </Layout>
     );
 };
 
 export const NoLayoutDashboardRouter = () => {
-    return <Routes>{getRoutes(navigations)}</Routes>;
+    return (
+        <Routes>
+            {getRoutes(navigations)}
+            <Route path="/*" element={<NotFound />} />
+        </Routes>
+    );
 };
 
 export default DashboardRouter;

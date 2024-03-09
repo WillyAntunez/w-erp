@@ -22,5 +22,9 @@
     "loading": "Loading",
 
     "natural-person": "Natural person",
-    "legal-person": "Legal person"
+    "legal-person": "Legal person",
+
+    "section-under-construction-message": "This section is under construction",
+    "section-not-found-message": "We couldn't find what you're looking for.",
+    "go-back-home": "Go Back Home"
 }

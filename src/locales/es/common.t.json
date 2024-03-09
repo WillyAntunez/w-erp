@@ -22,5 +22,10 @@
     "loading": "Loading",
 
     "natural-person": "Persona natural",
-    "legal-person": "Persona jurídica"
+    "legal-person": "Persona jurídica",
+
+    "section-under-construction-message": "Esta seccion está en construcción.",
+    "section-not-found-message": "No pudimos encontrar lo que estás buscando.",
+
+    "go-back-home": "Regresar al inicio"
 }

@@ -51,7 +51,7 @@ export const AbsoluteLoader = ({
                 sx={{
                     fontSize: 30,
                     fontWeight: 600,
-                    color: '#1d1d1d',
+                    color: (theme) => theme.palette.text.primary,
                     textAlign: 'center',
                 }}
             >
