@@ -34,22 +34,20 @@ export const getCustomers = async () => {
                 : 'Error al obtener los clientes',
         };
     } catch (error) {
-        console.error('Error al obtener los clientes', error);
-
         if (axios.isAxiosError(error)) {
+            console.log(error);
+
             return {
                 status: error.response?.status || 500,
                 success: false,
-                message:
-                    error.response?.data.message ||
-                    'Error al obtener los clientes',
+                message: error.response?.data.message || error?.message,
                 data: null,
             };
         } else {
             return {
                 status: 500,
                 success: false,
-                message: 'Error al obtener los clientes',
+                message: error,
                 data: null,
             };
         }

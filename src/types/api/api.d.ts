@@ -1,4 +1,4 @@
-type ApiRequestResponse = {
+export type ApiRequestResponse = {
     status: number;
     success: boolean;
     message?: string;

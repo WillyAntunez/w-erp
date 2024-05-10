@@ -26,6 +26,8 @@ import i18next from '@/locales/config';
 
 import translations from './CustomersListPage.t.json';
 import AbsoluteLoader from '@/components/AbsoluteLoader';
+import Swal from 'sweetalert2';
+import { CustomerModal } from '@/components/Modals/CustomerModal';
 
 const customerDatagridColumns: TypeColumn[] = [
     {
@@ -174,6 +176,7 @@ export const CustomersListPage = () => {
         ];
     }, []);
 
+    // load customers data
     const loadData = async () => {
         setIsLoadingCustomers(true);
 
@@ -181,6 +184,12 @@ export const CustomersListPage = () => {
 
         if (customersResponse.success && customersResponse.data) {
             setCustomers(customersResponse.data);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: t('error-loading-customers'),
+                text: `${customersResponse.status}: ${customersResponse.message}`,
+            });
         }
 
         setIsLoadingCustomers(false);
@@ -189,6 +198,18 @@ export const CustomersListPage = () => {
     useEffect(() => {
         loadData();
     }, []);
+
+    // handle create customer modal
+    const [isCustomerModalOpen, setIsCustomerModalOpen] =
+        useState<boolean>(false);
+
+    const onOpenCustomerModal = () => {
+        setIsCustomerModalOpen(true);
+    };
+
+    const onCloseCustomerModal = () => {
+        setIsCustomerModalOpen(false);
+    };
 
     return (
         <Content title={t('title')} icon={'Contacts'}>
@@ -318,7 +339,7 @@ export const CustomersListPage = () => {
                                     endIcon={<MuiIcon icon="Refresh" />}
                                     onClick={loadData}
                                 >
-                                    {t('update', {
+                                    {t('refresh', {
                                         ns: 'common',
                                     })}
                                 </Button>
@@ -333,6 +354,7 @@ export const CustomersListPage = () => {
                                         fontSize: 13,
                                     }}
                                     endIcon={<MuiIcon icon="Add" />}
+                                    onClick={onOpenCustomerModal}
                                 >
                                     {t('add-customers')}
                                 </Button>
@@ -355,6 +377,11 @@ export const CustomersListPage = () => {
                     open={isLoadingCustomers}
                 />
             </Box>
+
+            <CustomerModal
+                open={isCustomerModalOpen}
+                onClose={onCloseCustomerModal}
+            />
         </Content>
     );
 };

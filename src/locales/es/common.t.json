@@ -13,6 +13,7 @@
     "view": "Ver",
     "edit": "Editar",
     "delete": "Eliminar",
+    "refresh": "Actualizar",
 
     "active": "Activo",
     "inactive": "Inactivo",
@@ -24,8 +25,20 @@
     "natural-person": "Persona natural",
     "legal-person": "Persona jurídica",
 
+    "male": "Masculino",
+    "female": "Femenino",
+    "non-binary": "No binario",
+    "prefer-not-to-say": "Prefiere no decir",
+
     "section-under-construction-message": "Esta seccion está en construcción.",
     "section-not-found-message": "No pudimos encontrar lo que estás buscando.",
+    "go-back-home": "Regresar al inicio",
 
-    "go-back-home": "Regresar al inicio"
+    "english": "Inglés",
+    "spanish": "Español",
+
+    "add": "Agregar",
+
+    "yes": "Sí",
+    "no": "No"
 }

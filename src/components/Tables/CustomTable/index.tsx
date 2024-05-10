@@ -66,7 +66,7 @@ export const CustomTable = ({
                         ) : (
                             <Typography
                                 fontSize={18}
-                                fontWeight={500}
+                                fontWeight={300}
                                 sx={{ textAlign: 'center' }}
                             >
                                 {noRowsText}

@@ -30,7 +30,7 @@ export const statuses = {
 // * person type
 export const personTypesNames = {
     natural: 'N',
-    legal: 'J',
+    legal: 'L',
 };
 
 export const personTypes = {
@@ -48,4 +48,48 @@ export const personTypes = {
 export const dateFormatStrings = {
     date: 'dd/MM/yyyy',
     dateWithTime: 'dd/MM/yyyy HH:mm',
+};
+
+// * genders
+export const genderNames = {
+    male: 'M',
+    female: 'F',
+    other: 'O',
+    preferNotToSay: 'X',
+};
+
+export const genders = {
+    [genderNames.male]: {
+        label: i18next.t('male'),
+        value: genderNames.male,
+    },
+    [genderNames.female]: {
+        label: i18next.t('female'),
+        value: genderNames.female,
+    },
+    [genderNames.other]: {
+        label: i18next.t('non-binary'),
+        value: genderNames.other,
+    },
+    [genderNames.preferNotToSay]: {
+        label: i18next.t('prefer-not-to-say'),
+        value: genderNames.preferNotToSay,
+    },
+};
+
+// * languages
+export const languageNames = {
+    en: 'en',
+    es: 'es',
+};
+
+export const languages = {
+    [languageNames.en]: {
+        label: i18next.t('english'),
+        value: languageNames.en,
+    },
+    [languageNames.es]: {
+        label: i18next.t('spanish'),
+        value: languageNames.es,
+    },
 };

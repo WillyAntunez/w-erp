@@ -13,6 +13,7 @@
     "filters": "Filters",
     "update": "Update",
     "search": "Search",
+    "refresh": "Refresh",
 
     "active": "Active",
     "inactive": "Inactive",
@@ -22,9 +23,22 @@
     "loading": "Loading",
 
     "natural-person": "Natural person",
-    "legal-person": "Legal person",
+    "legal-person": "Legal entity",
+
+    "male": "Male",
+    "female": "Female",
+    "non-binary": "Non binary",
+    "prefer-not-to-say": "Prefer not to say",
 
     "section-under-construction-message": "This section is under construction",
     "section-not-found-message": "We couldn't find what you're looking for.",
-    "go-back-home": "Go Back Home"
+    "go-back-home": "Go Back Home",
+
+    "english": "English",
+    "spanish": "Spanish",
+
+    "add": "Add",
+
+    "yes": "Yes",
+    "no": "No"
 }

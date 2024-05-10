@@ -10,6 +10,7 @@
         "new-customers": "New Customers",
         "potential-customers": "Potential Customers",
         "no-customers-found": "No customers found",
+        "error-loading-customers": "Error loading customers",
 
         "loading-customers": "Loading Customers"
     },
@@ -24,6 +25,7 @@
         "new-customers": "Nuevos Clientes",
         "potential-customers": "Clientes Potenciales",
         "no-customers-found": "No se encontraron clientes",
+        "error-loading-customers": "Error cargando clientes",
 
         "loading-customers": "Cargando Clientes"
     }
