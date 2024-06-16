@@ -1,0 +1,12 @@
+{
+    "en": {
+        "file-size-exceeded": "File size exceeded, max:",
+        "invalid-file-type": "Invalid file type",
+        "invalid-file-extension": "Invalid file extension, allowed:"
+    },
+    "es": {
+        "file-size-exceeded": "Tamaño de archivo excedido, max:",
+        "invalid-file-type": "Tipo de archivo inválido",
+        "invalid-file-extension": "Extensión de archivo inválida, permitidas:"
+    }
+}

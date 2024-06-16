@@ -37,8 +37,20 @@
     "english": "Inglés",
     "spanish": "Español",
 
+    "save": "Guardar",
+    "cancel": "Cancelar",
+
     "add": "Agregar",
 
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+
+    "not-valid-input-format": "Dato inválido. Verifica el formato",
+    "includes-invalid-characters": "Incluye caracteres no válidos",
+
+    "first-name(s)": "Nombre(s)",
+    "last-names": "Apellidos",
+
+    "birth-date": "Fecha de nacimiento",
+    "min-allowed-age": "Edad mínima permitida"
 }

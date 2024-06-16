@@ -14,6 +14,13 @@ export const H2 = styled(Typography)(({ theme }) => ({
     fontWeight: 400,
 }));
 
+export const H3 = styled(Typography)(({ theme }) => ({
+    variant: 'h3',
+    color: theme.palette.primary.dark,
+    fontSize: 16,
+    fontWeight: 400,
+}));
+
 export const Paragraph = styled(Typography)(({ theme }) => ({
     variant: 'body1',
     color: theme.palette.grey[800],

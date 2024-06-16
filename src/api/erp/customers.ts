@@ -1,7 +1,4 @@
-import {
-    ICustomerSummary,
-    ICustomersListApiResponse,
-} from '@/types/api/customer';
+import { ICustomerSummary, ICustomersListApiResponse } from '@/types/customer';
 import api from '../api';
 import axios, { AxiosError } from 'axios';
 

@@ -1,2 +1,2 @@
 export * from './api.d.ts';
-export * from './customer.d.ts';
+export * from '../customer.js';

@@ -1,6 +1,9 @@
 import { ReactElement } from 'react';
 import { Control, FieldValues } from 'react-hook-form';
 
+import * as yup from 'yup';
+import { languages } from '../../../utils/constants';
+
 type ControlType = Control<FieldValues, any>;
 
 export type IInputTypes =
@@ -16,12 +19,17 @@ export type IInputTypes =
     | 'DIVIDER'
     | 'CHECK';
 
-export type IInputDef =
+export type multilangTexObj = {
+    en: string;
+    es: string;
+};
+
+export type IInputDef<T> =
     | {
           type: IInputTypes;
-          name: string;
-          label: string;
-          placeholder?: string;
+          name: keyof T;
+          label?: string | multilangTexObj;
+          placeholder?: string | multilangTexObj;
           rows?: number;
 
           required?: boolean;
@@ -34,10 +42,11 @@ export type IInputDef =
               lg?: number;
               xl?: number;
           };
+          yupValidation?: yup.ISchema;
       }
     | {
           type: 'DIVIDER';
-          label?: string;
+          label?: string | multilangTexObj;
           sizes?: {
               xs?: number;
               sm?: number;
@@ -77,7 +86,7 @@ export interface IInputComponentProps {
 
 export interface IAutoformProps {
     inputs: IInputDef[];
-    control: ControlType;
+    control: Control<any, any>;
     defaultSizes?: { xs: number; sm: number; md: number };
     spacing?: number;
     optionsData?: {

@@ -20,7 +20,7 @@ export const DateInput = ({
             control={control}
             name={name}
             render={({ field: { value, ...field }, fieldState: { error } }) => (
-                <FormControl fullWidth>
+                <FormControl fullWidth error={!!error}>
                     {/* {label && (
                         <InputLabel
                             label={label}

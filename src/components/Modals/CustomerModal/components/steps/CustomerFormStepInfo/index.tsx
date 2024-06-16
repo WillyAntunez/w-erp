@@ -1,196 +1,73 @@
-import Autoform from '@/components/Autoform';
-import { H2, Paragraph } from '@/components/Typography';
-import {
-    Avatar,
-    Button,
-    ButtonGroup,
-    Divider,
-    Grid,
-    Typography,
-} from '@mui/material';
-import translations from '../../CustomerModal.t.json';
-import React, { useState } from 'react';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
-import { useForm } from 'react-hook-form';
+import { Button, ButtonGroup, Divider, Grid, Typography } from '@mui/material';
+import { CustomerBasicInfo } from '../../../types/CustomerModal';
 import { genders, languages, personTypesNames } from '@/utils/constants';
+import { H2, Paragraph } from '@/components/Typography';
 import { IPersonType } from '@/types/common';
-import { IInputDef } from '@/components/Autoform/types/AutoformTypes';
+import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import Autoform from '@/components/Autoform';
+import AvatarEditable from '@/components/AvatarEditable';
+import translations from '../../../CustomerModal.t.json';
+import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
+import {
+    legalEntityAdditionalInfoInputs,
+    legalEntityProfileAsideInputs,
+    naturalPersonAdditionalInfoInputs,
+    naturalPersonProfileAsideInputs,
+} from './formSchemas';
+import { segmentationInputs } from './formSchemas';
+import useAutoformValidation from '@/hooks/useAutoFormValidation';
 
-const naturalPersonProfileAsideInputs: IInputDef[] = [
-    {
-        label: 'First name',
-        name: 'firstName',
-        type: 'TEXT',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        label: 'Last name',
-        name: 'lastName',
-        type: 'TEXT',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        label: 'Birthdate',
-        name: 'birthdate',
-        type: 'DATE',
-        sizes: {
-            xs: 12,
-            md: 4,
-        },
-    },
-    {
-        label: 'Gender',
-        name: 'gender',
-        type: 'SELECT',
-        sizes: {
-            xs: 12,
-            md: 4,
-        },
-    },
-    {
-        label: 'Preferred language',
-        name: 'preferredLanguage',
-        type: 'SELECT',
-        sizes: {
-            xs: 12,
-            md: 4,
-        },
-    },
-];
+interface ICustomerFormStepOneProps {
+    current: CustomerBasicInfo;
+    onChange: (data: CustomerBasicInfo) => void;
+}
 
-const legalEntityProfileAsideInputs: IInputDef[] = [
-    {
-        type: 'TEXT',
-        label: 'Legal name',
-        name: 'legalName',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        type: 'TEXT',
-        label: 'Trade name',
-        name: 'tradeName',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        type: 'TEXT',
-        label: 'Description',
-        name: 'description',
-        sizes: {
-            xs: 12,
-        },
-    },
-];
-
-const naturalPersonAdditionalInfoInputs: IInputDef[] = [
-    {
-        type: 'DIVIDER',
-        label: 'Additional info',
-        sizes: {
-            xs: 12,
-        },
-    },
-    {
-        label: 'Marital status',
-        type: 'SELECT',
-        name: 'maritalStatus',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        label: 'Occupation',
-        type: 'TEXT',
-        name: 'occupation',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-];
-
-const legalEntityAdditionalInfoInputs: IInputDef[] = [
-    {
-        type: 'DIVIDER',
-        label: 'Additional info',
-        sizes: {
-            xs: 12,
-        },
-    },
-    {
-        type: 'SELECT',
-        label: 'Economic activity',
-        name: 'economicActivity',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-
-    {
-        type: 'SELECT',
-        label: 'Preferred language',
-        name: 'preferredLanguage',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-];
-
-const segmentationInputs: IInputDef[] = [
-    {
-        label: 'Segmentation',
-        type: 'DIVIDER',
-        sizes: {
-            xs: 12,
-        },
-    },
-    {
-        name: 'segment',
-        label: 'Default segment',
-        type: 'SELECT',
-        sizes: {
-            xs: 12,
-            md: 6,
-        },
-    },
-    {
-        name: 'autoSegmentation',
-        label: 'Enable auto-segmentation',
-        type: 'CHECK',
-    },
-];
-
-interface ICustomerFormStepOneProps {}
-
-export const CustomerFormStepOne = ({}: ICustomerFormStepOneProps) => {
-    // translations
+export const CustomerFormStepInfo = ({
+    current,
+    onChange,
+}: ICustomerFormStepOneProps) => {
+    // * translations
     const { t, lt } = useLocalTranslationResource({
         resource: translations,
-        name: 'CustomerModalStepOne',
+        name: 'CustomerModalStepInfo',
     });
 
-    // forms
-    const { control } = useForm();
+    // * forms
 
-    // handle person type
+    const { resolver } = useAutoformValidation<CustomerBasicInfo>([
+        ...naturalPersonProfileAsideInputs,
+    ]);
+
+    const { control, reset, watch, getValues, handleSubmit } =
+        useForm<CustomerBasicInfo>({
+            resolver,
+            mode: 'onChange',
+        });
+
+    useEffect(() => {
+        const subscription = watch((value, { name, type }) =>
+            onChange(value as CustomerBasicInfo),
+        );
+        return () => subscription.unsubscribe();
+    }, [watch]);
+
+    // * handle person type change
     const [personType, setPersonType] = useState<IPersonType>('N');
 
     const onChangePersonType = (type: IPersonType) => {
         setPersonType(type);
+    };
+
+    // * handle avatar image change
+    const [avatarImage, setAvatarImage] = useState<File | null>(null);
+
+    const onAvatarImageChange = (image: File) => {
+        setAvatarImage(image);
+    };
+
+    const onRemoveAvatarImage = () => {
+        setAvatarImage(null);
     };
 
     return (
@@ -261,13 +138,13 @@ export const CustomerFormStepOne = ({}: ICustomerFormStepOneProps) => {
             <Grid item xs={12}>
                 <Grid container spacing={2}>
                     {/* profile image */}
+
                     <Grid item>
-                        <Avatar
-                            sx={{
-                                width: '80px',
-                                height: '80px',
-                            }}
-                        ></Avatar>
+                        <AvatarEditable
+                            image={avatarImage}
+                            onImageChange={onAvatarImageChange}
+                            onImageRemove={onRemoveAvatarImage}
+                        />
                     </Grid>
 
                     {/* profile aside inputs information */}
@@ -311,3 +188,5 @@ export const CustomerFormStepOne = ({}: ICustomerFormStepOneProps) => {
         </Grid>
     );
 };
+
+export default CustomerFormStepInfo;

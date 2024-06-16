@@ -6,6 +6,8 @@ import './locales/config';
 
 import '@inovua/reactdatagrid-community/index.css';
 
+import './App.css';
+
 function App() {
     const { listenScreenWidth } = useApplicationStore();
 

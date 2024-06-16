@@ -16,7 +16,7 @@ import ReactDataGrid from '@inovua/reactdatagrid-community';
 import Summary, { ISummaryArray } from '@/components/Summary';
 import { ActionsCell } from '../../../components/Tables/ActionsCell';
 import { getCustomers } from '@/api/erp/customers';
-import { ICustomerSummary } from '@/types/api/customer';
+import { ICustomerSummary } from '@/types/customer';
 import { dateFormatStrings, statuses } from '@/utils/constants';
 import { getPersonType, getStatus } from '@/utils/getConstants';
 import { formatDate } from '@/utils/formatDate';

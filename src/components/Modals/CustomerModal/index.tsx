@@ -4,10 +4,13 @@ import { Divider, Grid, Step, StepLabel, Stepper } from '@mui/material';
 import { useEffect, useState } from 'react';
 import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 import { H2, Paragraph } from '@/components/Typography';
-import { CustomerFormStepOne } from './components/steps/CustomerFormStepOne';
+import CustomerFormStepInfo from './components/steps/CustomerFormStepInfo';
 import { CustomerFormStepTwo } from './components/steps/CustomerFormStepTwo';
 import { CustomerFormStepAdditionalContacts } from './components/steps/CustomerFormStepAdditionalContacts';
 import { CustomerFormStepDocuments } from './components/steps/CustomerFormStepDocuments';
+import { CustomerBasicInfo } from './types/CustomerModal';
+
+import { initialCustomerBasicInformation } from './newCustomerInitialStates';
 
 interface ICustomerModalProps {
     open: boolean;
@@ -21,11 +24,22 @@ export const CustomerModal = ({
     currentCustomerId,
 }: ICustomerModalProps) => {
     // translations
+
     const { t, lt } = useLocalTranslationResource({
         resource: translations,
         name: 'CustomerModal',
     });
 
+    // * handle data
+    const [customerBasicInfo, setCustomerBasicInfo] =
+        useState<CustomerBasicInfo>({ ...initialCustomerBasicInformation });
+
+    const onChangeCustomerBasicInfo = (data: CustomerBasicInfo): void => {
+        setCustomerBasicInfo({ ...data });
+        console.log(data);
+    };
+
+    // * handle steps
     const [currentStep, setCurrentStep] = useState(0);
 
     const isLastStep = currentStep === 3;
@@ -43,9 +57,11 @@ export const CustomerModal = ({
         }
     };
 
+    // * reset/initialize
     useEffect(() => {
         if (!open) {
             setCurrentStep(0);
+            setCustomerBasicInfo({ ...initialCustomerBasicInformation });
         }
     }, [open]);
 
@@ -94,7 +110,12 @@ export const CustomerModal = ({
                 <Divider />
             </Grid>
 
-            {currentStep === 0 && <CustomerFormStepOne />}
+            {currentStep === 0 && (
+                <CustomerFormStepInfo
+                    current={customerBasicInfo}
+                    onChange={onChangeCustomerBasicInfo}
+                />
+            )}
 
             {currentStep === 1 && <CustomerFormStepTwo />}
 

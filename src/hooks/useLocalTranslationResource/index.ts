@@ -1,5 +1,5 @@
 import { formatText, textFormats } from '@/utils/formatText';
-import { useCallback, useEffect, useLayoutEffect } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 interface translationResource {
@@ -33,17 +33,14 @@ export const useLocalTranslationResource = ({
     }, []);
 
     // local translation function to use in the component
-    const lt = useCallback(
-        (key: string, format: textFormats = 'normal') => {
-            return formatText(
-                t(`${key}`, {
-                    ns: name,
-                }),
-                format,
-            );
-        },
-        [t, name],
-    );
+    const lt = useCallback((key: string, format: textFormats = 'normal') => {
+        return formatText(
+            t(`${key}`, {
+                ns: name,
+            }),
+            format,
+        );
+    }, []);
 
     return {
         t,

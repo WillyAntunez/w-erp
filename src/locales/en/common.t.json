@@ -37,8 +37,21 @@
     "english": "English",
     "spanish": "Spanish",
 
+    "save": "Save",
+    "cancel": "Cancel",
+
     "add": "Add",
 
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+
+    "not-valid-input-format": "Invalid input. Please check the format",
+    "includes-invalid-characters": "Includes invalid characters",
+
+    "first-name(s)": "First Name(s)",
+    "last-names": "Last names",
+
+    "birth-date": "Birth date",
+
+    "min-allowed-age": "Minimum allowed age"
 }
