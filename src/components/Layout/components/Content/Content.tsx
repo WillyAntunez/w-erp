@@ -84,6 +84,9 @@ export const Content = ({
                 sx={{
                     boxShadow: 'inset 0px 4px 42px 0px rgb(60 60 60 / 5%)',
                     flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    backgroundColor: '#F3F5F9',
                 }}
             >
                 {children}

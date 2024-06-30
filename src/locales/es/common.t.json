@@ -1,0 +1,56 @@
+{
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "status": "Estado",
+    "type": "Tipo",
+    "actions": "Acciones",
+    "first-interaction": "Primera interacción",
+    "last-interaction": "Última interacción",
+    "filters": "Filtros",
+    "update": "Actualizar",
+    "search": "Buscar",
+    "view": "Ver",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "refresh": "Actualizar",
+
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "blocked": "Bloqueado",
+    "deleted": "Eliminado",
+
+    "loading": "Loading",
+
+    "natural-person": "Persona natural",
+    "legal-person": "Persona jurídica",
+
+    "male": "Masculino",
+    "female": "Femenino",
+    "non-binary": "No binario",
+    "prefer-not-to-say": "Prefiere no decir",
+
+    "section-under-construction-message": "Esta seccion está en construcción.",
+    "section-not-found-message": "No pudimos encontrar lo que estás buscando.",
+    "go-back-home": "Regresar al inicio",
+
+    "english": "Inglés",
+    "spanish": "Español",
+
+    "save": "Guardar",
+    "cancel": "Cancelar",
+
+    "add": "Agregar",
+
+    "yes": "Sí",
+    "no": "No",
+
+    "not-valid-input-format": "Dato inválido. Verifica el formato",
+    "includes-invalid-characters": "Incluye caracteres no válidos",
+
+    "first-name(s)": "Nombre(s)",
+    "last-names": "Apellidos",
+
+    "birth-date": "Fecha de nacimiento",
+    "min-allowed-age": "Edad mínima permitida"
+}
