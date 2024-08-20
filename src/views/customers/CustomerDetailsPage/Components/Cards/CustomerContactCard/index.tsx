@@ -1,7 +1,6 @@
 import CardContainer from '@/components/CardContainer';
 import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
 import { Box, Grid, Typography } from '@mui/material';
-import React from 'react';
 
 export const CustomerContactCard = () => {
     return (

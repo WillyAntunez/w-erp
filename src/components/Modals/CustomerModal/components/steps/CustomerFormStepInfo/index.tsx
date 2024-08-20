@@ -7,8 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import Autoform from '@/components/Autoform';
 import AvatarEditable from '@/components/AvatarEditable';
-import translations from '../../../CustomerModal.t.json';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
+
 import {
     legalEntityAdditionalInfoInputs,
     legalEntityProfileAsideInputs,
@@ -27,14 +26,7 @@ export const CustomerFormStepInfo = ({
     current,
     onChange,
 }: ICustomerFormStepOneProps) => {
-    // * translations
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModalStepInfo',
-    });
-
     // * forms
-
     const { resolver } = useAutoformValidation<CustomerBasicInfo>([
         ...naturalPersonProfileAsideInputs,
     ]);
@@ -73,8 +65,11 @@ export const CustomerFormStepInfo = ({
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <H2 variant="h6">{lt('step-1-title')}</H2>
-                <Paragraph>{lt('step-1-description')}</Paragraph>
+                <H2 variant="h6">Datos generales</H2>
+                <Paragraph>
+                    Por favor, proporcione la información básica sobre el
+                    cliente.
+                </Paragraph>
             </Grid>
 
             <Grid item xs={12}>
@@ -84,7 +79,7 @@ export const CustomerFormStepInfo = ({
                             color: (theme) => theme.palette.grey[700],
                         }}
                     >
-                        {lt('customer-type')}
+                        Tipo de cliente
                     </Typography>
                 </Divider>
             </Grid>
@@ -101,9 +96,7 @@ export const CustomerFormStepInfo = ({
                         onClick={() => onChangePersonType('N')}
                         size="small"
                     >
-                        {t('natural-person', {
-                            ns: 'common',
-                        })}
+                        Persona natural
                     </Button>
 
                     <Button
@@ -115,9 +108,7 @@ export const CustomerFormStepInfo = ({
                         onClick={() => onChangePersonType('L')}
                         size="small"
                     >
-                        {t('legal-person', {
-                            ns: 'common',
-                        })}
+                        Persona jurídica
                     </Button>
                 </ButtonGroup>
             </Grid>

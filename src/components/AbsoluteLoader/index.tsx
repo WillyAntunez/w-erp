@@ -1,16 +1,14 @@
 import { Box, Typography } from '@mui/material';
 
-import i18n from '@/locales/config';
-
 type AbsoluteLoaderProps = {
     message?: string;
     open?: boolean;
 };
 
 export const AbsoluteLoader = ({
-    message = i18n.t('loading'),
+    message = 'cargando',
     open = false,
-}) => {
+}: AbsoluteLoaderProps) => {
     return open ? (
         <Box
             sx={{

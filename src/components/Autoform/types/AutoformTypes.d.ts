@@ -19,15 +19,12 @@ export type IInputTypes =
     | 'DIVIDER'
     | 'CHECK';
 
-export type multilangTexObj = {
-    en: string;
-    es: string;
-};
+export type multilangTexObj = string;
 
 export type IInputDef<T> =
     | {
           type: IInputTypes;
-          name: keyof T;
+          name: keyof T | string;
           label?: string | multilangTexObj;
           placeholder?: string | multilangTexObj;
           rows?: number;

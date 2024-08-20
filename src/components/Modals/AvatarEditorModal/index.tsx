@@ -5,10 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CustomLabel } from '../../Autoform/components/InputLabel';
 import { MuiFileInput } from 'mui-file-input';
 
-import translations from './AvatarEditorModal.t.json';
-
 import PhotoIcon from '@mui/icons-material/Photo';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 import AvatarEditor from 'react-avatar-editor';
 import { dataUrlToBlob } from '@/utils/dataUrlToBlob';
 
@@ -25,11 +22,6 @@ export const AvatarEditorModal = ({
     onClose,
     onImageChange,
 }: IAvatarEditorModalProps) => {
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'AvatarEditorModal',
-    });
-
     const editorRef = useRef<AvatarEditor>(null);
 
     const [currentImage, setCurrentImage] = useState<string | File | null>(
@@ -54,7 +46,7 @@ export const AvatarEditorModal = ({
         const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
 
         if (file.size > maxSize) {
-            setImageError(lt('file-size-exceeded') + ' 5mb');
+            setImageError('Máximo 5mb');
             return;
         }
 
@@ -62,7 +54,7 @@ export const AvatarEditorModal = ({
 
         if (!allowedExtensions.includes(extension)) {
             setImageError(
-                lt('invalid-file-extension') +
+                'Extension invalida, permitidas:' +
                     ' ' +
                     allowedExtensions.join(', '),
             );
@@ -70,7 +62,7 @@ export const AvatarEditorModal = ({
         }
 
         if (!allowedTypes.includes(file.type)) {
-            setImageError(lt('invalid-file-type'));
+            setImageError('Tipo de archivo invalido, permitidos: ');
             return;
         }
 
@@ -103,10 +95,10 @@ export const AvatarEditorModal = ({
             onClose={onClose}
             maxWidth={currentImage ? 400 : 500}
             showActionButtons={!!currentImage}
-            confirmButtonText={t('save')}
+            confirmButtonText={'Guardar'}
             onConfirm={onSaveImage}
             onCancel={onClose}
-            cancelButtonText={t('cancel')}
+            cancelButtonText={'Cancelar'}
         >
             {!currentImage ? (
                 <Grid container>
@@ -116,7 +108,7 @@ export const AvatarEditorModal = ({
                                 color: '#666',
                             }}
                         >
-                            You can upload your image here to use it as your
+                            Puedes subir una imagen aqui para usarla como tu
                             avatar
                         </Paragraph>
                     </Grid>
@@ -150,7 +142,7 @@ export const AvatarEditorModal = ({
                                     color: (theme) => theme.palette.grey[600],
                                 }}
                             >
-                                Click here to upload your image
+                                Click aqui para subir una imagen
                             </Typography>
                         </CustomLabel>
 

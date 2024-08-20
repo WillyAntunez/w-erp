@@ -1,8 +1,6 @@
 import { CustomModal } from '@/components/CustomModal';
-import translations from './CustomerModal.t.json';
 import { Divider, Grid, Step, StepLabel, Stepper } from '@mui/material';
 import { useEffect, useState } from 'react';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 import { H2, Paragraph } from '@/components/Typography';
 import CustomerFormStepInfo from './components/steps/CustomerFormStepInfo';
 import { CustomerFormStepTwo } from './components/steps/CustomerFormStepTwo';
@@ -23,13 +21,6 @@ export const CustomerModal = ({
     onClose,
     currentCustomerId,
 }: ICustomerModalProps) => {
-    // translations
-
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModal',
-    });
-
     // * handle data
     const [customerBasicInfo, setCustomerBasicInfo] =
         useState<CustomerBasicInfo>({ ...initialCustomerBasicInformation });
@@ -69,8 +60,8 @@ export const CustomerModal = ({
         <CustomModal
             title={
                 !currentCustomerId
-                    ? lt('create-customer')
-                    : lt('update-customer')
+                    ? 'Crear cliente'
+                    : 'Editar cliente ' + currentCustomerId
             }
             open={open}
             maxWidth={900}
@@ -79,29 +70,23 @@ export const CustomerModal = ({
             onConfirm={onNextClick}
             onCancel={onPreviousClick}
             confirmButtonText={
-                !isLastStep
-                    ? lt('next-step-button')
-                    : lt('save-customer-button')
+                !isLastStep ? 'Siguiente paso' : 'Guardar cliente '
             }
-            cancelButtonText={
-                !isFirstStep ? lt('previous-step-button') : lt('cancel-button')
-            }
+            cancelButtonText={!isFirstStep ? 'Paso anterior' : 'Cancelar'}
         >
             <Grid item xs={12} my={2}>
                 <Stepper alternativeLabel activeStep={currentStep}>
                     <Step>
-                        <StepLabel>
-                            {lt('customer-basic-information')}
-                        </StepLabel>
+                        <StepLabel>Informacion básica</StepLabel>
                     </Step>
                     <Step>
-                        <StepLabel>{lt('contact-info')}</StepLabel>
+                        <StepLabel>Informacion adicional</StepLabel>
                     </Step>
                     <Step>
-                        <StepLabel>{lt('additional-contacts')}</StepLabel>
+                        <StepLabel>Contactos adicionales</StepLabel>
                     </Step>
                     <Step>
-                        <StepLabel>{lt('documents')}</StepLabel>
+                        <StepLabel>Documentos adicionales</StepLabel>
                     </Step>
                 </Stepper>
             </Grid>

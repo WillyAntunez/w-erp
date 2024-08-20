@@ -11,7 +11,6 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
-import { useTranslation } from 'react-i18next';
 
 type IActionsCellProps = {
     row: any;
@@ -34,8 +33,6 @@ export const ActionsCell = ({
     onDelete = () => {},
 }: IActionsCellProps) => {
     const [anchorEl, setAnchorEl] = useState(null);
-
-    const { t } = useTranslation();
 
     const open = Boolean(anchorEl);
 
@@ -80,7 +77,7 @@ export const ActionsCell = ({
                         <ListItemIcon>
                             <VisibilityIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText>{t('view')}</ListItemText>
+                        <ListItemText>Ver</ListItemText>
                     </MenuItem>
                 )}
                 {showEdit && (
@@ -93,7 +90,7 @@ export const ActionsCell = ({
                         <ListItemIcon>
                             <EditIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText>{t('edit')}</ListItemText>
+                        <ListItemText>Editar</ListItemText>
                     </MenuItem>
                 )}
                 {showDelete && (
@@ -106,7 +103,7 @@ export const ActionsCell = ({
                         <ListItemIcon>
                             <DeleteIcon fontSize="small" />
                         </ListItemIcon>
-                        <ListItemText>{t('delete')}</ListItemText>
+                        <ListItemText>Eliminar</ListItemText>
                     </MenuItem>
                 )}
             </Menu>

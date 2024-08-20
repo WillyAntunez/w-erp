@@ -1,5 +1,3 @@
-import i18next from '@/locales/config';
-
 // * status
 export const statusNames = {
     active: 'A',
@@ -10,19 +8,19 @@ export const statusNames = {
 
 export const statuses = {
     A: {
-        name: i18next.t('active'),
+        name: 'Activo',
         color: 'success',
     },
     I: {
-        name: i18next.t('inactive'),
+        name: 'Inactivo',
         color: 'danger',
     },
     B: {
-        name: i18next.t('blocked'),
+        name: 'Bloqueado',
         color: 'warning',
     },
     D: {
-        name: i18next.t('deleted'),
+        name: 'Eliminado',
         color: 'danger',
     },
 };
@@ -35,11 +33,11 @@ export const personTypesNames = {
 
 export const personTypes = {
     [personTypesNames.natural]: {
-        name: i18next.t('natural-person'),
+        name: 'Persona natural',
         color: 'primary',
     },
     [personTypesNames.legal]: {
-        name: i18next.t('legal-person'),
+        name: 'Persona jurídica',
         color: 'info',
     },
 };
@@ -60,19 +58,19 @@ export const genderNames = {
 
 export const genders = {
     [genderNames.male]: {
-        label: i18next.t('male'),
+        label: 'Masculino',
         value: genderNames.male,
     },
     [genderNames.female]: {
-        label: i18next.t('female'),
+        label: 'Femenino',
         value: genderNames.female,
     },
     [genderNames.other]: {
-        label: i18next.t('non-binary'),
+        label: 'No binario',
         value: genderNames.other,
     },
     [genderNames.preferNotToSay]: {
-        label: i18next.t('prefer-not-to-say'),
+        label: 'Prefiero no decir',
         value: genderNames.preferNotToSay,
     },
 };
@@ -85,11 +83,11 @@ export const languageNames = {
 
 export const languages = {
     [languageNames.en]: {
-        label: i18next.t('english'),
+        label: 'Inglés',
         value: languageNames.en,
     },
     [languageNames.es]: {
-        label: i18next.t('spanish'),
+        label: 'Español',
         value: languageNames.es,
     },
 };

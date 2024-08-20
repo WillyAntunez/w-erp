@@ -1,9 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 
 export const UnderConstruction = () => {
-    const { t } = useTranslation();
-
     return (
         <Box
             sx={{
@@ -61,7 +58,7 @@ export const UnderConstruction = () => {
                         textAlign: 'center',
                     }}
                 >
-                    {t('section-under-construction-message')}
+                    Esta página está en construcción.
                 </Typography>
             </Box>
         </Box>

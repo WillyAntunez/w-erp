@@ -1,7 +1,5 @@
 import { H2, Paragraph } from '@/components/Typography';
 import { Button, Grid } from '@mui/material';
-import translations from '../../CustomerModal.t.json';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 
 import AddIcon from '@mui/icons-material/Add';
 import { CustomTable } from '@/components/Tables/CustomTable';
@@ -10,7 +8,7 @@ import { GridColDef } from '@mui/x-data-grid';
 const columns: GridColDef[] = [
     {
         field: 'name',
-        headerName: 'Name',
+        headerName: 'Nombre',
         flex: 1.5,
         minWidth: 150,
     },
@@ -22,29 +20,25 @@ const columns: GridColDef[] = [
     },
     {
         field: 'phone',
-        headerName: 'Phone',
+        headerName: 'Teléfono',
         flex: 1,
         minWidth: 150,
     },
     {
         field: 'actions',
-        headerName: 'Actions',
+        headerName: 'Acciones',
         width: 90,
     },
 ];
 
 export const CustomerFormStepAdditionalContacts = () => {
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModalStepOne',
-    });
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <H2 variant="h6">{lt('step-additional-contacts-title')}</H2>
+                <H2 variant="h6">Contactos adicionales</H2>
                 <Paragraph>
-                    {lt('step-additional-contacts-description')}
+                    Por favor, proporcione los contactos adicionales para el
+                    cliente.
                 </Paragraph>
             </Grid>
 
@@ -64,7 +58,7 @@ export const CustomerFormStepAdditionalContacts = () => {
                             onClick={() => {}}
                             startIcon={<AddIcon />}
                         >
-                            {lt('add-contact')}
+                            Agregar contacto
                         </Button>
                     </Grid>
                 </Grid>
@@ -81,7 +75,9 @@ export const CustomerFormStepAdditionalContacts = () => {
                 <CustomTable
                     columns={columns}
                     rows={[]}
-                    noRowsText="No contacts found"
+                    noRowsText={
+                        'No se han agregado contactos adicionales para el cliente.'
+                    }
                 />
             </Grid>
         </Grid>

@@ -1,10 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
-import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 
 export const NotFound = () => {
-    const { t } = useTranslation();
-
     return (
         <Box
             sx={{
@@ -61,7 +58,7 @@ export const NotFound = () => {
                         textAlign: 'center',
                     }}
                 >
-                    {t('section-not-found-message')}
+                    Lo sentimos, la página que buscas no existe.
                 </Typography>
             </Box>
             {/* go back home button */}
@@ -73,7 +70,7 @@ export const NotFound = () => {
             >
                 <NavLink to="/">
                     <Button variant="contained" color="primary">
-                        {t('go-back-home')}
+                        Ir al inicio
                     </Button>
                 </NavLink>
             </Box>

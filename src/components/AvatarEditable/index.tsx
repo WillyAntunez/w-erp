@@ -12,9 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useEffect, useState } from 'react';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 
-import translations from './AvatarEditable.t.json';
 import AvatarEditorModal from '../Modals/AvatarEditorModal';
 import { ImagePreviewModal } from '../Modals/ImagePreviewModal';
 
@@ -51,11 +49,6 @@ export const AvatarEditable = ({
     const handleTooltipOpen = () => {
         setIsTooltipOpen(true);
     };
-
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModalStepOne',
-    });
 
     // handle avatar editor modal
     const [isAvatarEditorModalOpen, setIsAvatarEditorModalOpen] =
@@ -159,7 +152,7 @@ export const AvatarEditable = ({
                                     startIcon={<FileUploadIcon />}
                                     onClick={onAvatarEditorModalOpen}
                                 >
-                                    {lt('upload-image')}
+                                    Subir imagen
                                 </TooltopButton>
                             ) : (
                                 <>
@@ -170,7 +163,7 @@ export const AvatarEditable = ({
                                         startIcon={<DeleteIcon />}
                                         onClick={intOnRemoveImage}
                                     >
-                                        {lt('remove-image')}
+                                        Quitar imagen
                                     </TooltopButton>
 
                                     <TooltopButton
@@ -180,7 +173,7 @@ export const AvatarEditable = ({
                                         startIcon={<EditIcon />}
                                         onClick={onEditImage}
                                     >
-                                        {lt('edit-image')}
+                                        Editar imagen
                                     </TooltopButton>
 
                                     <TooltopButton
@@ -190,7 +183,7 @@ export const AvatarEditable = ({
                                         startIcon={<VisibilityIcon />}
                                         onClick={onOpenAvatarPreview}
                                     >
-                                        {lt('view-image')}
+                                        Ver imagen
                                     </TooltopButton>
                                 </>
                             )}

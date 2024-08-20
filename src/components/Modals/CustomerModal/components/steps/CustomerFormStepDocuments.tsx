@@ -3,59 +3,53 @@ import { H2, Paragraph } from '@/components/Typography';
 import { TypeColumn } from '@inovua/reactdatagrid-community/types';
 import AddIcon from '@mui/icons-material/Add';
 import ReactDataGrid from '@inovua/reactdatagrid-community';
-import translations from '../../CustomerModal.t.json';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 
 const columns: TypeColumn[] = [
     {
         name: 'type',
-        header: 'Type',
+        header: 'Tipo',
         defaultFlex: 1,
     },
     {
         name: 'name',
-        header: 'Name',
+        header: 'Nombre',
         defaultFlex: 1.5,
     },
     {
         name: 'number',
-        header: 'Number',
+        header: 'Número',
         defaultFlex: 1,
     },
     {
         name: 'issueDate',
-        header: 'Issued',
+        header: 'Expedición',
         defaultFlex: 1,
     },
     {
         name: 'expirationDate',
-        header: 'Expiration',
+        header: 'Expiración',
         defaultFlex: 1,
     },
     {
         name: 'attachment',
-        header: 'Attachment',
+        header: 'Adjunto',
         defaultWidth: 80,
     },
     {
         name: 'actions',
-        header: 'Actions',
+        header: 'Acciones',
         defaultWidth: 90,
     },
 ];
 
 export const CustomerFormStepDocuments = () => {
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModalStepOne',
-    });
-
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <H2 variant="h6">{lt('step-additional-documents-title')}</H2>
+                <H2 variant="h6">Documentos adicionales</H2>
                 <Paragraph>
-                    {lt('step-additional-documents-description')}
+                    Por favor, proporcione los documentos relevantes del
+                    cliente.
                 </Paragraph>
             </Grid>
 
@@ -75,7 +69,7 @@ export const CustomerFormStepDocuments = () => {
                             onClick={() => {}}
                             startIcon={<AddIcon />}
                         >
-                            {lt('add-document')}
+                            Agregar documento
                         </Button>
                     </Grid>
                 </Grid>
@@ -85,7 +79,7 @@ export const CustomerFormStepDocuments = () => {
                 <ReactDataGrid
                     columns={columns}
                     dataSource={[]}
-                    emptyText={lt('no-documents-found')}
+                    emptyText={'No se encontraron documentos.'}
                 />
             </Grid>
         </Grid>

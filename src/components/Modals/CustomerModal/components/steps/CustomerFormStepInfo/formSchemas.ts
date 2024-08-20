@@ -1,6 +1,5 @@
 import { IInputDef } from '@/components/Autoform/types/AutoformTypes';
 import { CustomerBasicInfo } from '../../../types/CustomerModal';
-import i18next, { t } from 'i18next';
 import * as yup from 'yup';
 
 import { startOfDay, subYears } from 'date-fns';
@@ -10,7 +9,7 @@ const settings = store.getState().settings.customers;
 
 export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
     {
-        label: t('first-name(s)'),
+        label: 'Nombres',
         name: 'firstName',
         type: 'TEXT',
         sizes: {
@@ -23,11 +22,11 @@ export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
             .max(50, 'Max: 50')
             .matches(
                 /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/,
-                () => 'Error: ' + t('includes-invalid-characters'),
+                () => 'Error: ' + 'Solo se permiten letras',
             ),
     },
     {
-        label: t('last-names'),
+        label: 'Apellidos',
         name: 'lastName',
         type: 'TEXT',
         sizes: {
@@ -40,11 +39,11 @@ export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
             .max(50, 'Max: 50')
             .matches(
                 /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s'-]+$/,
-                () => 'Error: ' + t('includes-invalid-characters'),
+                () => 'Error: ' + 'Solo se permiten letras',
             ),
     },
     {
-        label: t('birth-date'),
+        label: 'Fecha de nacimiento',
         name: 'birthDate',
         type: 'DATE',
         sizes: {
@@ -55,11 +54,11 @@ export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
             .date()
             .max(
                 subYears(startOfDay(new Date()), settings.minAge),
-                () => t('min-allowed-age') + ': ' + settings.minAge,
+                () => 'Edad minima permitida' + ': ' + settings.minAge,
             ),
     },
     {
-        label: 'Gender',
+        label: 'Género',
         name: 'gender',
         type: 'SELECT',
         sizes: {
@@ -68,7 +67,7 @@ export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
         },
     },
     {
-        label: 'Preferred language',
+        label: 'Idioma preferido',
         name: 'preferredLanguage',
         type: 'SELECT',
         sizes: {
@@ -81,7 +80,7 @@ export const naturalPersonProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
 export const legalEntityProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
     {
         type: 'TEXT',
-        label: 'Legal name',
+        label: 'Nombre legal',
         name: 'legalName',
         sizes: {
             xs: 12,
@@ -90,7 +89,7 @@ export const legalEntityProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
     },
     {
         type: 'TEXT',
-        label: 'Trade name',
+        label: 'Nombre comercial',
         name: 'tradeName',
         sizes: {
             xs: 12,
@@ -99,7 +98,7 @@ export const legalEntityProfileAsideInputs: IInputDef<CustomerBasicInfo>[] = [
     },
     {
         type: 'TEXT',
-        label: 'Description',
+        label: 'Razón social',
         name: 'description',
         sizes: {
             xs: 12,
@@ -111,13 +110,13 @@ export const naturalPersonAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] =
     [
         {
             type: 'DIVIDER',
-            label: 'Additional info',
+            label: 'Informacion adicional',
             sizes: {
                 xs: 12,
             },
         },
         {
-            label: 'Marital status',
+            label: 'Estado civil',
             type: 'SELECT',
             name: 'maritalStatusId',
             sizes: {
@@ -126,7 +125,7 @@ export const naturalPersonAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] =
             },
         },
         {
-            label: 'Occupation',
+            label: 'Ocupación',
             type: 'TEXT',
             name: 'occupation',
             sizes: {
@@ -139,14 +138,14 @@ export const naturalPersonAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] =
 export const legalEntityAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] = [
     {
         type: 'DIVIDER',
-        label: 'Additional info',
+        label: 'Informacion adicional',
         sizes: {
             xs: 12,
         },
     },
     {
         type: 'SELECT',
-        label: 'Economic activity',
+        label: 'Sector económico',
         name: 'economicActivityId',
         sizes: {
             xs: 12,
@@ -156,7 +155,7 @@ export const legalEntityAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] = [
 
     {
         type: 'SELECT',
-        label: 'Preferred language',
+        label: 'Tipo de empresa',
         name: 'preferredLanguage',
         sizes: {
             xs: 12,
@@ -167,7 +166,7 @@ export const legalEntityAdditionalInfoInputs: IInputDef<CustomerBasicInfo>[] = [
 
 export const segmentationInputs: IInputDef<CustomerBasicInfo>[] = [
     {
-        label: 'Segmentation',
+        label: 'Segmentación',
         type: 'DIVIDER',
         sizes: {
             xs: 12,
@@ -175,7 +174,7 @@ export const segmentationInputs: IInputDef<CustomerBasicInfo>[] = [
     },
     {
         name: 'segmentId',
-        label: 'Default segment',
+        label: 'Segmento por defecto',
         type: 'SELECT',
         sizes: {
             xs: 12,
@@ -184,7 +183,7 @@ export const segmentationInputs: IInputDef<CustomerBasicInfo>[] = [
     },
     {
         name: 'enableAutoSegmentation',
-        label: 'Enable auto-segmentation',
+        label: 'Habilitar segmentación automática',
         type: 'CHECK',
     },
 ];

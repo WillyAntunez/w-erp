@@ -1,12 +1,10 @@
 import { H2, Paragraph } from '@/components/Typography';
 import { Grid } from '@mui/material';
-import translations from '../../CustomerModal.t.json';
-import useLocalTranslationResource from '@/hooks/useLocalTranslationResource';
 import { IInputDef } from '@/components/Autoform/types/AutoformTypes';
 import Autoform from '@/components/Autoform';
 import { useForm } from 'react-hook-form';
 
-const contactInfoInputs: IInputDef[] = [
+const contactInfoInputs: IInputDef<string>[] = [
     {
         type: 'DIVIDER',
         label: 'Contact info',
@@ -98,18 +96,16 @@ const contactInfoInputs: IInputDef[] = [
 ];
 
 export const CustomerFormStepTwo = () => {
-    const { t, lt } = useLocalTranslationResource({
-        resource: translations,
-        name: 'CustomerModalStepOne',
-    });
-
     const { control } = useForm();
 
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
-                <H2 variant="h6">{lt('step-2-title')}</H2>
-                <Paragraph>{lt('step-2-description')}</Paragraph>
+                <H2 variant="h6">Paso 2: Información de Contacto</H2>
+                <Paragraph>
+                    Por favor, proporcione la información de contacto sobre el
+                    cliente.
+                </Paragraph>
             </Grid>
 
             {/* contact */}

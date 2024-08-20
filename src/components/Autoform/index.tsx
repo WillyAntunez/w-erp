@@ -6,7 +6,6 @@ import {
     IInputTypeDef,
 } from './types/AutoformTypes';
 import { inputsCollection } from './inputsCollection';
-import { useTranslation } from 'react-i18next';
 
 export const Autoform = <T,>({
     inputs = [],
@@ -15,8 +14,6 @@ export const Autoform = <T,>({
     spacing = 1,
     optionsData = {},
 }: IAutoformProps) => {
-    const { i18n } = useTranslation();
-
     return (
         <Grid container spacing={spacing}>
             {inputs.map((input: IInputDef<T>, index) => {
@@ -41,10 +38,7 @@ export const Autoform = <T,>({
                     options = optionsData[input.name as string];
                 }
 
-                const label: string | undefined =
-                    typeof input.label === 'string'
-                        ? input.label
-                        : input.label?.[i18n.language as 'es' | 'en'];
+                const label: string | undefined = input.label;
 
                 return (
                     <Grid item {...sizes} key={index}>
