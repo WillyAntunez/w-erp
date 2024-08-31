@@ -39,7 +39,7 @@ export interface INavigation extends IAsideItem {
     /**
      * The icon of the navigation item
      */
-    icon?: string;
+    icon?: React.ReactNode;
     /**
      * The path of the navigation react component
      */

@@ -12,7 +12,6 @@ export const AsideItem = ({
     onClick = () => {},
     label = '',
     icon = null,
-    iconType = 'MUI',
     type = 'INTERNAL',
     expansibleType = 'FLOATING',
     isExpanded = false,
@@ -59,20 +58,6 @@ export const AsideItem = ({
         );
     }
 
-    const renderedIcon = useMemo(() => {
-        if (icon) {
-            if (iconType === 'MUI') {
-                return <MuiIcon icon={icon} />;
-            } else {
-                return <i className={icon} />;
-            }
-        }
-
-        console.log('no icon');
-
-        return null;
-    }, [icon, iconType]);
-
     return (
         <NavLink
             to={type !== 'EXPANSIBLE' ? path : '#'}
@@ -116,7 +101,7 @@ export const AsideItem = ({
                             color: (theme) => theme.palette.text.secondary,
                         }}
                     >
-                        {renderedIcon}
+                        {icon}
                     </Box>
 
                     {/* label */}
