@@ -18,6 +18,9 @@ export const StyledMenu = styled((props: MenuProps) => (
         borderRadius: 6,
         marginLeft: theme.spacing(1),
         minWidth: 200,
+        display: 'flex',
+        flexDirection: 'column',
+
         color:
             theme.palette.mode === 'light'
                 ? 'rgb(55, 65, 81)'

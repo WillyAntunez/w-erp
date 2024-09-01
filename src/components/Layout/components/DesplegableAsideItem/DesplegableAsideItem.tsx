@@ -137,7 +137,6 @@ export const DesplegableAsideItem = ({
                             MenuListProps={{
                                 'aria-labelledby': 'demo-customized-button',
                             }}
-                            // ref={menuRef}
                             hideBackdrop
                             anchorEl={anchorEl}
                             open={open}

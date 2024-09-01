@@ -1,6 +1,6 @@
 import { INavIconType } from '@/types/navigations';
 import { Box, Typography } from '@mui/material';
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { layoutConfig } from '../../config/layoutConfig';
 import { MuiIcon } from '@/components/MuiIcon/MuiIcon';
 
@@ -9,7 +9,7 @@ type IContentProps = {
     title: string;
     showTitleBar?: boolean;
     showFooter?: boolean;
-    icon?: null | string;
+    icon?: ReactNode;
     iconType?: INavIconType;
 };
 
@@ -51,20 +51,7 @@ export const Content = ({
                             mt: '2px',
                         }}
                     >
-                        {icon && iconType === 'MUI' ? (
-                            <MuiIcon
-                                icon={icon}
-                                iconProps={{
-                                    fontSize: 'inherit',
-                                }}
-                            />
-                        ) : null}
-                        {icon && iconType === 'FA' ? (
-                            <i
-                                className={icon}
-                                style={{ marginRight: '10px' }}
-                            />
-                        ) : null}
+                        {icon}
                     </Box>
 
                     <Box

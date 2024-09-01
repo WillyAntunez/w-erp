@@ -7,6 +7,8 @@ import { MdOutlineEngineering } from 'react-icons/md';
 import { MdOutlineInventory2 } from 'react-icons/md';
 import { AiOutlineProduct } from 'react-icons/ai';
 import { CiLocationOn } from 'react-icons/ci';
+import { FaBox } from 'react-icons/fa';
+import { CiBoxes } from 'react-icons/ci';
 
 export const navigations: INavigation[] = [
     {
@@ -35,20 +37,24 @@ export const navigations: INavigation[] = [
     },
     {
         label: 'Productos',
-        icon: <AiOutlineProduct />,
+        icon: <CiBoxes />,
         type: 'EXPANSIBLE',
         children: [
             {
-                label: 'Lista',
-                icon: <AiOutlineProduct />,
+                label: 'Administrar productos',
+                icon: <FaBox />,
                 path: '/products/list',
-                component: lazy(() => import('./components/UnderConstruction')),
+                component: lazy(
+                    () => import('./views/products/ProductsListPage'),
+                ),
             },
             {
-                label: 'Categorias',
+                label: 'Categorías / Subcategorías',
                 icon: <AiOutlineProduct />,
                 path: '/products/categories',
-                component: lazy(() => import('./components/UnderConstruction')),
+                component: lazy(
+                    () => import('./views/products/ProductsCategoriesPage'),
+                ),
             },
         ],
     },
